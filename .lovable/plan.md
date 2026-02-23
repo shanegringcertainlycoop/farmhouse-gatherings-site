@@ -1,93 +1,62 @@
 
 
-# Wandawega-Inspired Redesign
+# Match Wandawega's Exact Color Palette
 
-## Overview
-Transform the site from a warm cream "brochure" feel into a dark, cinematic, photo-forward experience inspired by wandawega.com. The result should feel moody, confident, and editorial -- like a beautifully shot camp lookbook.
+## What Wandawega Uses
 
-## Color Palette Shift
-- **Background**: Dark charcoal `hsl(30, 8%, 12%)` instead of warm cream
-- **Text**: Warm cream/white on dark backgrounds
-- **Cards/Sections**: Alternate between dark panels and full-bleed photography
-- **Accent**: Warm amber used sparingly for links and highlights
-- **Remove**: Linen texture overlay (doesn't work on dark)
+From analyzing the live site, Wandawega's palette is:
 
-## Typography Updates
-- Playfair Display stays but gets used **bigger and bolder** -- massive overlaid headlines
-- "The Farmhouse" logo in the nav gets an italic serif treatment
-- Source Sans 3 stays for body but in lighter weights on dark backgrounds
+- **Dark/Black sections**: `#1d1d1d` -- a neutral, cool near-black (not warm-tinted)
+- **Cream/Off-white sections**: `#f1ede4` -- a warm parchment cream (used for light "white-bold" sections)
+- **Burnt Orange accent**: `#e8552d` -- a bold red-orange used for the "SIGN UP" button border and other CTAs
+- **Text on dark**: pure white or near-white
+- **Text on light**: dark brown/charcoal `#2b2520` or similar
+- **Nav background**: solid black/near-black with white text
+- **Borders/dividers**: subtle warm gray, barely visible
 
-## Section-by-Section Changes
+This is a significant shift -- Wandawega alternates between **cream** and **dark** sections, whereas your site is currently all-dark with subtle tonal variation.
 
-### Navbar
-- Transparent/dark background with white text
-- Logo in italic Playfair Display
-- Links in light cream, subtle hover
+## Plan
 
-### Hero (100vh)
-- Full viewport height, edge-to-edge photo
-- Massive bold white serif title directly on image
-- Darker gradient overlay for legibility
-- Subtitle in italic, smaller
-- CTA button subtle or removed -- let the image speak
+### 1. Update CSS variables in `src/index.css`
 
-### About
-- Remove postcard card and pin decoration
-- Two photos remain in a grid
-- Text on dark background below, centered, generous spacing
+Replace current color tokens with Wandawega-matched values:
 
-### Experience
-- Remove icon card grid entirely
-- Replace with large photo blocks with bold white overlay text
-- Keep the 6-photo gallery but tighter gaps, edge-to-edge feel
-- Feature descriptions become minimal captions
+| Token | Current (warm charcoal) | New (Wandawega) |
+|-------|------------------------|-----------------|
+| `--background` | `30 8% 12%` | `30 4% 11%` (neutral near-black #1d1d1d) |
+| `--foreground` | `36 33% 90%` | `37 30% 92%` (warm cream #f1ede4) |
+| `--secondary` (accent) | `30 45% 55%` (honey) | `14 80% 54%` (burnt orange #e8552d) |
+| `--accent` | same honey | same burnt orange |
+| `--camp-cream` | warm cream | `37 30% 92%` |
+| `--camp-honey` | honey | burnt orange |
+| `--surface-warm` | `30 10% 14%` | `37 30% 92%` (cream -- for light alternating sections) |
+| `--surface-cool` | `200 12% 13%` | `30 4% 11%` (dark -- stays dark) |
+| `--surface-pine` | `150 10% 13%` | `30 4% 9%` (slightly darker) |
+| `--border` | warm gray | `30 5% 20%` (subtler) |
 
-### Lake
-- Full-bleed dock photo, nearly full viewport
-- Text overlaid on image with dark gradient, or on dark panel alongside
+### 2. Fix text contrast for light sections
 
-### Area
-- Dark background, clean editorial typography
-- Remove icon circles -- just headings and short descriptions
-- More like a magazine column
+Sections using `bg-surface-warm` (About, Area) will now be cream-colored, so text in those sections needs to flip to dark. Update these components:
 
-### Details
-- Stats in large bold serif numbers on dark background -- no card borders
-- House rules as a simple confident list, no "cabin door" styling
+- **`AboutSection.tsx`**: Change `text-foreground` to dark text classes on the cream background
+- **`AreaSection.tsx`**: Same treatment
+- **`Navbar.tsx`**: Keep dark bg with white/cream text (matches Wandawega nav exactly)
 
-### Inquiry
-- Dark background, form with subtle light borders
-- Warm amber submit button
-- Clean, minimal
+### 3. Update accent color usage
 
-### Footer
-- Dark, minimal, italic property name
+- The submit button in `InquirySection.tsx` uses `bg-secondary` which will now be burnt orange -- this matches Wandawega's CTA style perfectly
+- Stat numbers in `DetailsSection.tsx` use `text-secondary` -- will become orange, matching Wandawega's bold accent approach
 
-### Dividers
-- Remove PineDivider from Index.tsx entirely
-- Generous spacing and full-bleed photos serve as natural breaks
+### 4. Files to modify
 
-## Files to Modify
+| File | Changes |
+|------|---------|
+| `src/index.css` | All CSS custom property values updated to Wandawega palette |
+| `src/components/AboutSection.tsx` | Dark text on now-cream background |
+| `src/components/AreaSection.tsx` | Dark text on now-cream background |
+| `src/components/DetailsSection.tsx` | Minor text color adjustments if needed |
+| `src/components/InquirySection.tsx` | Text adjustments for contrast |
 
-| File | Change |
-|------|--------|
-| `src/index.css` | Dark palette CSS variables, remove linen-texture, update wave-divider or remove |
-| `src/components/Navbar.tsx` | Dark/transparent bg, italic logo, cream text |
-| `src/components/HeroSection.tsx` | 100vh, larger type, stronger overlay, subtle/no CTA |
-| `src/components/AboutSection.tsx` | Remove card styling, dark bg, flat layout |
-| `src/components/ExperienceSection.tsx` | Photo-driven layout with overlay text, remove icon grid |
-| `src/components/LakeSection.tsx` | Full-bleed photo, overlay or dark panel text |
-| `src/components/AreaSection.tsx` | Dark bg, remove icons, editorial text |
-| `src/components/DetailsSection.tsx` | Large numbers on dark bg, simple list |
-| `src/components/InquirySection.tsx` | Dark bg form styling |
-| `src/components/Footer.tsx` | Dark minimal footer |
-| `src/pages/Index.tsx` | Remove PineDivider references |
-
-## What Stays
-- All 18 existing photos -- used even more prominently
-- Playfair Display + Source Sans 3 fonts
-- Single-page smooth-scroll architecture
-- Mobile responsive approach
-- Inquiry form fields and functionality
-- Lucide icons (used minimally)
+No structural or layout changes -- just colors swapped to match Wandawega exactly.
 
