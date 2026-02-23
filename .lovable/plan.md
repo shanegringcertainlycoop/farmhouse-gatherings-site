@@ -1,81 +1,93 @@
 
 
-# The Farmhouse at Big Long Lake — Summer Camp Edition
+# Wandawega-Inspired Redesign
 
 ## Overview
-A warm, nostalgic single-page brochure site that leans into summer camp energy — think campfire glow, cabin bunks, screen doors slamming, and firefly evenings. The design should feel like a well-loved camp bulletin board meets a cozy lakehouse welcome packet.
+Transform the site from a warm cream "brochure" feel into a dark, cinematic, photo-forward experience inspired by wandawega.com. The result should feel moody, confident, and editorial -- like a beautifully shot camp lookbook.
 
-## Design Direction
-- **Warm Cream** (#F4EFE6) base — like old paper
-- **Honey Wood** (#A87747) and **Deep Amber** (#7A4B2A) for headings and accents
-- **Pine Green** (#2F3A2E) for body text — woodsy, grounded
-- **Lake Navy** (#2B3E4A) for contrast moments
-- **Camp-inspired typography**: A rustic/slab serif for headings (think cabin signage), clean sans-serif for body
-- Subtle textures: warm wood-grain or linen-like background hints
-- Hand-drawn style icons for features (campfire, canoe, bunk bed, picnic table)
-- Slight "postcard" or "camp letter home" feeling in the layout — friendly, informal, inviting
+## Color Palette Shift
+- **Background**: Dark charcoal `hsl(30, 8%, 12%)` instead of warm cream
+- **Text**: Warm cream/white on dark backgrounds
+- **Cards/Sections**: Alternate between dark panels and full-bleed photography
+- **Accent**: Warm amber used sparingly for links and highlights
+- **Remove**: Linen texture overlay (doesn't work on dark)
 
-## Page Sections
+## Typography Updates
+- Playfair Display stays but gets used **bigger and bolder** -- massive overlaid headlines
+- "The Farmhouse" logo in the nav gets an italic serif treatment
+- Source Sans 3 stays for body but in lighter weights on dark backgrounds
 
-### 1. Hero
-- Full-width warm placeholder image area (think: dock at golden hour)
-- "The Farmhouse at Big Long Lake" in rustic slab serif
-- "Wolcottville, Indiana" underneath
-- Subline: "A place to gather."
-- CTA: "Inquire About Your Stay" — styled like a warm camp badge or wooden button
+## Section-by-Section Changes
 
-### 2. About the Home
-- Short paragraph in a slightly inset "postcard" style card
-- Copy: oldest property on the lake, gently updated, still itself
-- Feels like a note tacked to a cabin wall
+### Navbar
+- Transparent/dark background with white text
+- Logo in italic Playfair Display
+- Links in light cream, subtle hover
 
-### 3. The Experience
-- Grid of features with hand-drawn style icons:
-  - 🛏 Bunk rooms for cousins
-  - 🍽 Big dining table
-  - 🛋 Cozy living space
-  - 🚣 Dock access
-  - 🪟 Screened porch
-  - 🔥 Firepit
-- Each with a short one-liner in that calm, warm tone
-- Layout feels like a camp activity board
+### Hero (100vh)
+- Full viewport height, edge-to-edge photo
+- Massive bold white serif title directly on image
+- Darker gradient overlay for legibility
+- Subtitle in italic, smaller
+- CTA button subtle or removed -- let the image speak
 
-### 4. The Lake
-- Section about Big Long Lake — all-sports, swimming, boating, fishing, summer evenings
-- Placeholder for dock/water photo
-- Maybe a subtle wave or water-line divider
+### About
+- Remove postcard card and pin decoration
+- Two photos remain in a grid
+- Text on dark background below, centered, generous spacing
 
-### 5. The Area
-- Wolcottville highlights — farm stands, local ice cream, small-town rhythm
-- Feels like "things to do around camp"
+### Experience
+- Remove icon card grid entirely
+- Replace with large photo blocks with bold white overlay text
+- Keep the 6-photo gallery but tighter gaps, edge-to-edge feel
+- Feature descriptions become minimal captions
 
-### 6. Stay Details
-- Scannable badges or merit-badge style stats: Sleeps 12 · 4 Bedrooms · 2 Baths · 2-night minimum
-- Clear, friendly note: family-friendly, no large party groups
-- Styled like camp rules posted on a cabin door — warm, not stern
+### Lake
+- Full-bleed dock photo, nearly full viewport
+- Text overlaid on image with dark gradient, or on dark panel alongside
 
-### 7. Inquiry Form
-- "Tell us a little about your group."
-- Fields: Name, Dates, Group Size, Message
-- Warm cream card with Deep Amber submit button
-- Front-end only — can wire to email later
-- Feels like filling out a camp registration card
+### Area
+- Dark background, clean editorial typography
+- Remove icon circles -- just headings and short descriptions
+- More like a magazine column
 
-## Navigation
-- Sticky top nav with property name in rustic type
-- Smooth-scroll links to each section
-- Mobile hamburger menu
-- Warm, woody tones — never cold or corporate
+### Details
+- Stats in large bold serif numbers on dark background -- no card borders
+- House rules as a simple confident list, no "cabin door" styling
 
-## Summer Camp Touches Throughout
-- Dividers between sections using subtle nature elements (pine trees, gentle wave lines, or campfire sparks — done with simple SVG/CSS, not clipart)
-- Warm amber/golden tint on placeholder image areas
-- Overall pacing is slow and inviting — generous spacing, never cramped
-- The whole page should feel like walking into a screen porch on a warm evening
+### Inquiry
+- Dark background, form with subtle light borders
+- Warm amber submit button
+- Clean, minimal
 
-## Technical Notes
-- Single-page, fully responsive
-- No backend, no dark mode
-- Colored warm placeholder blocks for all images
-- All camp-style icons done with Lucide icons (already installed) styled to feel hand-drawn via rounded strokes
+### Footer
+- Dark, minimal, italic property name
+
+### Dividers
+- Remove PineDivider from Index.tsx entirely
+- Generous spacing and full-bleed photos serve as natural breaks
+
+## Files to Modify
+
+| File | Change |
+|------|--------|
+| `src/index.css` | Dark palette CSS variables, remove linen-texture, update wave-divider or remove |
+| `src/components/Navbar.tsx` | Dark/transparent bg, italic logo, cream text |
+| `src/components/HeroSection.tsx` | 100vh, larger type, stronger overlay, subtle/no CTA |
+| `src/components/AboutSection.tsx` | Remove card styling, dark bg, flat layout |
+| `src/components/ExperienceSection.tsx` | Photo-driven layout with overlay text, remove icon grid |
+| `src/components/LakeSection.tsx` | Full-bleed photo, overlay or dark panel text |
+| `src/components/AreaSection.tsx` | Dark bg, remove icons, editorial text |
+| `src/components/DetailsSection.tsx` | Large numbers on dark bg, simple list |
+| `src/components/InquirySection.tsx` | Dark bg form styling |
+| `src/components/Footer.tsx` | Dark minimal footer |
+| `src/pages/Index.tsx` | Remove PineDivider references |
+
+## What Stays
+- All 18 existing photos -- used even more prominently
+- Playfair Display + Source Sans 3 fonts
+- Single-page smooth-scroll architecture
+- Mobile responsive approach
+- Inquiry form fields and functionality
+- Lucide icons (used minimally)
 
