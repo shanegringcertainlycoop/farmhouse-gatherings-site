@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,45 +6,45 @@
 
 @layer base {
   :root {
-    /* Warm Cream base */
-    --background: 36 33% 93%;
-    --foreground: 150 14% 20%;
+    /* Dark charcoal base */
+    --background: 30 8% 12%;
+    --foreground: 36 33% 90%;
 
-    /* Cards — slightly warmer than base */
-    --card: 36 30% 90%;
-    --card-foreground: 150 14% 20%;
+    /* Cards — slightly lighter charcoal */
+    --card: 30 8% 16%;
+    --card-foreground: 36 33% 90%;
 
-    --popover: 36 33% 93%;
-    --popover-foreground: 150 14% 20%;
+    --popover: 30 8% 16%;
+    --popover-foreground: 36 33% 90%;
 
-    /* Deep Amber primary */
-    --primary: 25 48% 32%;
-    --primary-foreground: 36 33% 93%;
+    /* Warm amber primary */
+    --primary: 36 33% 90%;
+    --primary-foreground: 30 8% 12%;
 
-    /* Honey Wood secondary */
-    --secondary: 27 38% 47%;
+    /* Honey accent */
+    --secondary: 30 45% 55%;
     --secondary-foreground: 36 33% 93%;
 
-    /* Muted — warm cream tint */
-    --muted: 36 25% 86%;
-    --muted-foreground: 150 8% 40%;
+    /* Muted — dark tint */
+    --muted: 30 8% 18%;
+    --muted-foreground: 36 15% 60%;
 
-    /* Lake Navy accent */
-    --accent: 200 27% 23%;
+    /* Warm amber accent */
+    --accent: 30 45% 55%;
     --accent-foreground: 36 33% 93%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 36 33% 93%;
 
-    --border: 30 20% 80%;
-    --input: 30 20% 80%;
-    --ring: 25 48% 32%;
+    --border: 30 10% 22%;
+    --input: 30 10% 22%;
+    --ring: 30 45% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     /* Camp-specific tokens */
-    --camp-cream: 36 33% 93%;
-    --camp-honey: 27 38% 47%;
+    --camp-cream: 36 33% 90%;
+    --camp-honey: 30 45% 55%;
     --camp-amber: 25 48% 32%;
     --camp-pine: 150 14% 20%;
     --camp-navy: 200 27% 23%;
@@ -67,23 +67,7 @@
   }
 }
 
-/* Subtle linen texture overlay */
-.linen-texture {
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-}
-
-/* Wave divider */
-.wave-divider {
-  position: relative;
-  overflow: hidden;
-}
-.wave-divider::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q150 0 300 20 Q450 40 600 20 Q750 0 900 20 Q1050 40 1200 20 L1200 40 L0 40Z' fill='hsl(36,33%25,93%25)'/%3E%3C/svg%3E") no-repeat bottom center;
-  background-size: cover;
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }

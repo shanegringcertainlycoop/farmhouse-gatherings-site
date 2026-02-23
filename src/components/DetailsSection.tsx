@@ -1,41 +1,35 @@
-import { Users, BedDouble, Bath, CalendarDays } from "lucide-react";
-
 const stats = [
-  { icon: Users, label: "Sleeps", value: "12" },
-  { icon: BedDouble, label: "Bedrooms", value: "4" },
-  { icon: Bath, label: "Baths", value: "2" },
-  { icon: CalendarDays, label: "Minimum Stay", value: "2 nights" },
+  { label: "Sleeps", value: "12" },
+  { label: "Bedrooms", value: "4" },
+  { label: "Baths", value: "2" },
+  { label: "Min Stay", value: "2 nights" },
 ];
 
 const DetailsSection = () => (
-  <section id="details" className="py-20 sm:py-28 px-4">
-    <div className="max-w-4xl mx-auto">
-      <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary text-center mb-14">
+  <section id="details" className="py-24 sm:py-32 px-6 border-t border-border/50">
+    <div className="max-w-3xl mx-auto">
+      <h2 className="font-display text-3xl sm:text-5xl font-bold text-foreground text-center mb-16">
         Stay Details
       </h2>
 
-      {/* Merit badge stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-12">
+      {/* Stats — large serif numbers */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 mb-20">
         {stats.map((s) => (
-          <div
-            key={s.label}
-            className="bg-card border-2 border-secondary/30 rounded-sm p-5 sm:p-6 text-center"
-          >
-            <s.icon size={28} strokeWidth={1.5} className="mx-auto mb-3 text-secondary" />
-            <div className="font-display text-2xl font-bold text-primary">{s.value}</div>
-            <div className="font-body text-xs uppercase tracking-wider text-foreground/50 mt-1">
+          <div key={s.label} className="text-center">
+            <div className="font-display text-4xl sm:text-5xl font-bold text-secondary mb-2">{s.value}</div>
+            <div className="font-body text-xs uppercase tracking-[0.2em] text-foreground/40">
               {s.label}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Camp rules card */}
-      <div className="bg-card border border-border rounded-sm p-6 sm:p-8 max-w-lg mx-auto text-center">
-        <h3 className="font-display text-lg font-semibold text-primary mb-3">
+      {/* House rules — simple list */}
+      <div className="max-w-md mx-auto text-center">
+        <h3 className="font-display text-xl font-semibold text-foreground mb-6">
           A Few House Notes
         </h3>
-        <ul className="font-body text-foreground/70 text-sm sm:text-base space-y-2">
+        <ul className="font-body text-foreground/50 text-base space-y-3">
           <li>Family-friendly. Always.</li>
           <li>No large party groups.</li>
           <li>Treat it like your grandparents' place.</li>
