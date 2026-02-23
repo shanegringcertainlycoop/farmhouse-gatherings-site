@@ -15,10 +15,10 @@ const AboutSection = () => (
 
     {/* Text — clean, centered on dark */}
     <div className="max-w-2xl mx-auto px-6 text-center">
-      <h2 className="font-display text-3xl sm:text-5xl font-bold text-foreground mb-8">
+      <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#2b2520] mb-8">
         About the Home
       </h2>
-      <div className="space-y-5 font-body text-foreground/70 text-base sm:text-lg leading-relaxed">
+      <div className="space-y-5 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
         <p>
           The Farmhouse is one of the oldest properties on Big Long Lake. It's been gently
           updated over the years but never lost what makes it feel like home.
