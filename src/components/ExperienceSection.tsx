@@ -1,4 +1,7 @@
 import { BedDouble, UtensilsCrossed, Sofa, Ship, PanelTop, Flame } from "lucide-react";
+import bunkImg from "@/assets/bunk-room.webp";
+import bedroomImg from "@/assets/bedroom.webp";
+import lakeYardImg from "@/assets/lake-yard.webp";
 
 const features = [
   {
