@@ -2,11 +2,11 @@ import lakeImg from "@/assets/dock.webp";
 import deckLakeImg from "@/assets/deck-lake.webp";
 
 const LakeSection = () => (
-  <section id="lake" className="relative">
+  <section id="lake" className="relative bg-surface-pine">
     {/* Full-bleed hero photo */}
-    <div className="relative h-[80vh] overflow-hidden">
+    <div className="relative h-[80vh] overflow-hidden mx-6 rounded-2xl">
       <img src={lakeImg} alt="Dock on Big Long Lake" className="w-full h-full object-cover" loading="lazy" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-surface-pine via-black/30 to-transparent rounded-2xl" />
       <div className="absolute inset-0 flex items-center justify-center">
         <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-white text-center">
           The Lake

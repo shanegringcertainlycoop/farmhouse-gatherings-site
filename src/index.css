@@ -49,6 +49,11 @@
     --camp-pine: 150 14% 20%;
     --camp-navy: 200 27% 23%;
     --camp-warm-overlay: 30 60% 50%;
+
+    /* Section background tones */
+    --surface-warm: 30 10% 14%;
+    --surface-cool: 200 12% 13%;
+    --surface-pine: 150 10% 13%;
   }
 }
 

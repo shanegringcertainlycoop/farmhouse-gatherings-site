@@ -59,7 +59,7 @@ const InquirySection = () => {
   };
 
   return (
-    <section id="inquire" className="py-24 sm:py-32 px-6 border-t border-border/50">
+    <section id="inquire" className="py-24 sm:py-32 px-6 border-t border-border/50 bg-surface-cool">
       <div className="max-w-lg mx-auto">
         <h2 className="font-display text-3xl sm:text-5xl font-bold text-foreground text-center mb-3">
           Get in Touch

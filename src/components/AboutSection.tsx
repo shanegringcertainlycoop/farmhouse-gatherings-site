@@ -2,13 +2,13 @@ import houseImg from "@/assets/houses-from-lake.webp";
 import backyardImg from "@/assets/backyard.webp";
 
 const AboutSection = () => (
-  <section id="about" className="py-24 sm:py-32">
+  <section id="about" className="py-24 sm:py-32 bg-surface-warm">
     {/* Photo strip — edge-to-edge feel */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 mb-20">
-      <div className="aspect-[4/3] overflow-hidden">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-6 mb-20 max-w-6xl mx-auto">
+      <div className="aspect-[4/3] overflow-hidden rounded-2xl">
         <img src={houseImg} alt="The Farmhouse from the lake" className="w-full h-full object-cover" loading="lazy" />
       </div>
-      <div className="aspect-[4/3] overflow-hidden">
+      <div className="aspect-[4/3] overflow-hidden rounded-2xl">
         <img src={backyardImg} alt="Backyard and deck" className="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
