@@ -2,61 +2,38 @@
 
 # Match Wandawega's Exact Color Palette
 
-## What Wandawega Uses
+## Summary
 
-From analyzing the live site, Wandawega's palette is:
+Update the site's color palette to match Wandawega's exact colors: neutral near-black (#1d1d1d), warm parchment cream (#f1ede4), and burnt orange accent (#e8552d). Cream-background sections get dark text for proper contrast.
 
-- **Dark/Black sections**: `#1d1d1d` -- a neutral, cool near-black (not warm-tinted)
-- **Cream/Off-white sections**: `#f1ede4` -- a warm parchment cream (used for light "white-bold" sections)
-- **Burnt Orange accent**: `#e8552d` -- a bold red-orange used for the "SIGN UP" button border and other CTAs
-- **Text on dark**: pure white or near-white
-- **Text on light**: dark brown/charcoal `#2b2520` or similar
-- **Nav background**: solid black/near-black with white text
-- **Borders/dividers**: subtle warm gray, barely visible
+## Changes
 
-This is a significant shift -- Wandawega alternates between **cream** and **dark** sections, whereas your site is currently all-dark with subtle tonal variation.
+### 1. `src/index.css` - Update all CSS custom properties
 
-## Plan
+Replace color tokens with Wandawega-matched HSL values:
 
-### 1. Update CSS variables in `src/index.css`
+- `--background`: neutral near-black (30 4% 11%)
+- `--foreground`: warm cream (37 30% 92%)
+- `--secondary` and `--accent`: burnt orange (14 80% 54%)
+- `--surface-warm`: cream (37 30% 92%) for alternating light sections
+- `--surface-cool`: near-black (30 4% 11%)
+- `--surface-pine`: slightly darker (30 4% 9%)
+- `--border`: subtle warm gray (30 5% 20%)
 
-Replace current color tokens with Wandawega-matched values:
+### 2. `src/components/AboutSection.tsx` - Dark text on cream
 
-| Token | Current (warm charcoal) | New (Wandawega) |
-|-------|------------------------|-----------------|
-| `--background` | `30 8% 12%` | `30 4% 11%` (neutral near-black #1d1d1d) |
-| `--foreground` | `36 33% 90%` | `37 30% 92%` (warm cream #f1ede4) |
-| `--secondary` (accent) | `30 45% 55%` (honey) | `14 80% 54%` (burnt orange #e8552d) |
-| `--accent` | same honey | same burnt orange |
-| `--camp-cream` | warm cream | `37 30% 92%` |
-| `--camp-honey` | honey | burnt orange |
-| `--surface-warm` | `30 10% 14%` | `37 30% 92%` (cream -- for light alternating sections) |
-| `--surface-cool` | `200 12% 13%` | `30 4% 11%` (dark -- stays dark) |
-| `--surface-pine` | `150 10% 13%` | `30 4% 9%` (slightly darker) |
-| `--border` | warm gray | `30 5% 20%` (subtler) |
+Change heading and body text from `text-foreground` to dark charcoal (`text-[#2b2520]`) since this section now has a cream background.
 
-### 2. Fix text contrast for light sections
+### 3. `src/components/AreaSection.tsx` - Dark text on cream
 
-Sections using `bg-surface-warm` (About, Area) will now be cream-colored, so text in those sections needs to flip to dark. Update these components:
+Same treatment: headings and body text flip to dark charcoal for contrast on cream.
 
-- **`AboutSection.tsx`**: Change `text-foreground` to dark text classes on the cream background
-- **`AreaSection.tsx`**: Same treatment
-- **`Navbar.tsx`**: Keep dark bg with white/cream text (matches Wandawega nav exactly)
+### 4. No changes needed for:
 
-### 3. Update accent color usage
+- **DetailsSection / InquirySection**: These sit on dark backgrounds, so existing light text works
+- **Navbar**: Already dark bg with light text, matches Wandawega nav
+- **HeroSection / LakeSection**: Image-based sections, unaffected
 
-- The submit button in `InquirySection.tsx` uses `bg-secondary` which will now be burnt orange -- this matches Wandawega's CTA style perfectly
-- Stat numbers in `DetailsSection.tsx` use `text-secondary` -- will become orange, matching Wandawega's bold accent approach
+## Technical Details
 
-### 4. Files to modify
-
-| File | Changes |
-|------|---------|
-| `src/index.css` | All CSS custom property values updated to Wandawega palette |
-| `src/components/AboutSection.tsx` | Dark text on now-cream background |
-| `src/components/AreaSection.tsx` | Dark text on now-cream background |
-| `src/components/DetailsSection.tsx` | Minor text color adjustments if needed |
-| `src/components/InquirySection.tsx` | Text adjustments for contrast |
-
-No structural or layout changes -- just colors swapped to match Wandawega exactly.
-
+All color changes are CSS variable swaps in `src/index.css`. The two cream-background components (About, Area) get hardcoded dark text colors (`#2b2520`) since the design token `--foreground` is cream (for dark sections). No structural or layout changes.
