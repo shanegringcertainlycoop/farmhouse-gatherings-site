@@ -1,4 +1,7 @@
 import { BedDouble, UtensilsCrossed, Sofa, Ship, PanelTop, Flame } from "lucide-react";
+import bunkImg from "@/assets/bunk-room.webp";
+import bedroomImg from "@/assets/bedroom.webp";
+import lakeYardImg from "@/assets/lake-yard.webp";
 
 const features = [
   {
@@ -61,6 +64,19 @@ const ExperienceSection = () => (
             <p className="font-body text-foreground/70 text-sm">{f.desc}</p>
           </div>
         ))}
+      </div>
+
+      {/* Photo strip */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-14">
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={bunkImg} alt="Bunk room with nautical decor" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={bedroomImg} alt="Cozy bedroom with lake view" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={lakeYardImg} alt="Yard and dock on Big Long Lake" className="w-full h-full object-cover" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
