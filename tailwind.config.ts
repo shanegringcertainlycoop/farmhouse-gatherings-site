@@ -58,6 +58,11 @@ export default {
           pine: "hsl(var(--camp-pine))",
           navy: "hsl(var(--camp-navy))",
         },
+        surface: {
+          warm: "hsl(var(--surface-warm))",
+          cool: "hsl(var(--surface-cool))",
+          pine: "hsl(var(--surface-pine))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

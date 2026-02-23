@@ -14,7 +14,7 @@ const highlights = [
 ];
 
 const AreaSection = () => (
-  <section id="area" className="py-24 sm:py-32 px-6 border-t border-border/50">
+  <section id="area" className="py-24 sm:py-32 px-6 border-t border-border/50 bg-surface-warm">
     <div className="max-w-2xl mx-auto">
       <h2 className="font-display text-3xl sm:text-5xl font-bold text-foreground text-center mb-16">
         The Area
