@@ -1,11 +1,10 @@
+import lakeImg from "@/assets/dock.webp";
+
 const LakeSection = () => (
   <section id="lake" className="py-20 sm:py-28 px-4">
     <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 items-center">
-      {/* Placeholder image */}
-      <div className="aspect-[4/3] rounded-sm bg-gradient-to-br from-camp-honey/25 via-camp-amber/15 to-camp-navy/10 border border-border flex items-center justify-center">
-        <span className="font-body text-sm text-foreground/30 tracking-wide uppercase">
-          Photo placeholder
-        </span>
+      <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+        <img src={lakeImg} alt="Dock on Big Long Lake" className="w-full h-full object-cover" loading="lazy" />
       </div>
 
       <div>

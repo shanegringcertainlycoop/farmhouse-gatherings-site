@@ -1,3 +1,5 @@
+import heroImg from "@/assets/deck-view.webp";
+
 const HeroSection = () => {
   const scrollToInquire = () => {
     document.querySelector("#inquire")?.scrollIntoView({ behavior: "smooth" });
@@ -5,20 +7,22 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative min-h-[85vh] flex items-center justify-center wave-divider">
-      {/* Warm placeholder background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-camp-honey/30 via-camp-amber/20 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-camp-amber/10 to-camp-honey/10" />
+      {/* Real photo background */}
+      <div className="absolute inset-0">
+        <img src={heroImg} alt="View of Big Long Lake from the deck" className="w-full h-full object-cover" loading="eager" />
+        <div className="absolute inset-0 bg-gradient-to-b from-camp-amber/40 via-camp-amber/20 to-background/90" />
+      </div>
 
       <div className="relative z-10 text-center px-4 py-24 max-w-3xl mx-auto">
-        <p className="font-body text-sm tracking-[0.3em] uppercase text-secondary mb-6">
+        <p className="font-body text-sm tracking-[0.3em] uppercase text-primary-foreground/80 mb-6">
           Wolcottville, Indiana
         </p>
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-tight mb-6">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6 drop-shadow-lg">
           The Farmhouse at
           <br />
           Big Long Lake
         </h1>
-        <p className="font-display text-xl sm:text-2xl text-secondary italic mb-10">
+        <p className="font-display text-xl sm:text-2xl text-primary-foreground/90 italic mb-10 drop-shadow">
           A place to gather.
         </p>
         <button
