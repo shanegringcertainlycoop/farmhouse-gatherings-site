@@ -6,54 +6,54 @@
 
 @layer base {
   :root {
-    /* Dark charcoal base */
-    --background: 30 8% 12%;
-    --foreground: 36 33% 90%;
+    /* Wandawega near-black base */
+    --background: 30 4% 11%;
+    --foreground: 37 30% 92%;
 
-    /* Cards — slightly lighter charcoal */
-    --card: 30 8% 16%;
-    --card-foreground: 36 33% 90%;
+    /* Cards */
+    --card: 30 4% 14%;
+    --card-foreground: 37 30% 92%;
 
-    --popover: 30 8% 16%;
-    --popover-foreground: 36 33% 90%;
+    --popover: 30 4% 14%;
+    --popover-foreground: 37 30% 92%;
 
-    /* Warm amber primary */
-    --primary: 36 33% 90%;
-    --primary-foreground: 30 8% 12%;
+    /* Primary */
+    --primary: 37 30% 92%;
+    --primary-foreground: 30 4% 11%;
 
-    /* Honey accent */
-    --secondary: 30 45% 55%;
-    --secondary-foreground: 36 33% 93%;
+    /* Burnt orange accent */
+    --secondary: 14 80% 54%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Muted — dark tint */
-    --muted: 30 8% 18%;
-    --muted-foreground: 36 15% 60%;
+    /* Muted */
+    --muted: 30 4% 16%;
+    --muted-foreground: 30 10% 55%;
 
-    /* Warm amber accent */
-    --accent: 30 45% 55%;
-    --accent-foreground: 36 33% 93%;
+    /* Accent — same burnt orange */
+    --accent: 14 80% 54%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 36 33% 93%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 22%;
-    --input: 30 10% 22%;
-    --ring: 30 45% 55%;
+    --border: 30 5% 20%;
+    --input: 30 5% 20%;
+    --ring: 14 80% 54%;
 
     --radius: 0.25rem;
 
     /* Camp-specific tokens */
-    --camp-cream: 36 33% 90%;
-    --camp-honey: 30 45% 55%;
+    --camp-cream: 37 30% 92%;
+    --camp-honey: 14 80% 54%;
     --camp-amber: 25 48% 32%;
     --camp-pine: 150 14% 20%;
     --camp-navy: 200 27% 23%;
     --camp-warm-overlay: 30 60% 50%;
 
     /* Section background tones */
-    --surface-warm: 30 10% 14%;
-    --surface-cool: 200 12% 13%;
-    --surface-pine: 150 10% 13%;
+    --surface-warm: 37 30% 92%;
+    --surface-cool: 30 4% 11%;
+    --surface-pine: 30 4% 9%;
   }
 }
 

@@ -16,17 +16,17 @@ const highlights = [
 const AreaSection = () => (
   <section id="area" className="py-24 sm:py-32 px-6 border-t border-border/50 bg-surface-warm">
     <div className="max-w-2xl mx-auto">
-      <h2 className="font-display text-3xl sm:text-5xl font-bold text-foreground text-center mb-16">
+      <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#2b2520] text-center mb-16">
         The Area
       </h2>
 
       <div className="space-y-12">
         {highlights.map((h) => (
           <div key={h.title} className="text-center">
-            <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-3">
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-[#2b2520] mb-3">
               {h.title}
             </h3>
-            <p className="font-body text-foreground/50 text-base sm:text-lg leading-relaxed max-w-md mx-auto">
+            <p className="font-body text-[#2b2520]/60 text-base sm:text-lg leading-relaxed max-w-md mx-auto">
               {h.desc}
             </p>
           </div>
