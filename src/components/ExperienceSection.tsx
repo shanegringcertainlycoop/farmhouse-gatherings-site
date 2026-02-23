@@ -65,6 +65,19 @@ const ExperienceSection = () => (
           </div>
         ))}
       </div>
+
+      {/* Photo strip */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-14">
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={bunkImg} alt="Bunk room with nautical decor" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={bedroomImg} alt="Cozy bedroom with lake view" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={lakeYardImg} alt="Yard and dock on Big Long Lake" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
     </div>
   </section>
 );
