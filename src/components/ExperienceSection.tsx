@@ -1,7 +1,10 @@
 import { BedDouble, UtensilsCrossed, Sofa, Ship, PanelTop, Flame } from "lucide-react";
 import bunkImg from "@/assets/bunk-room.webp";
-import bedroomImg from "@/assets/bedroom.webp";
-import lakeYardImg from "@/assets/lake-yard.webp";
+import kidsRoomImg from "@/assets/kids-room.webp";
+import diningImg from "@/assets/dining-room.webp";
+import livingImg from "@/assets/living-room.webp";
+import kitchenImg from "@/assets/kitchen.webp";
+import livingWideImg from "@/assets/living-room-wide.webp";
 
 const features = [
   {
@@ -66,16 +69,25 @@ const ExperienceSection = () => (
         ))}
       </div>
 
-      {/* Photo strip */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-14">
+      {/* Photo gallery */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-14">
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={diningImg} alt="Dining table with lake views" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={livingImg} alt="Warm living room with wood paneling" className="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
+          <img src={kitchenImg} alt="Kitchen with Big Long Lake sign" className="w-full h-full object-cover" loading="lazy" />
+        </div>
         <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
           <img src={bunkImg} alt="Bunk room with nautical decor" className="w-full h-full object-cover" loading="lazy" />
         </div>
         <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
-          <img src={bedroomImg} alt="Cozy bedroom with lake view" className="w-full h-full object-cover" loading="lazy" />
+          <img src={kidsRoomImg} alt="Kids room with twin beds" className="w-full h-full object-cover" loading="lazy" />
         </div>
         <div className="aspect-[4/3] rounded-sm overflow-hidden border border-border">
-          <img src={lakeYardImg} alt="Yard and dock on Big Long Lake" className="w-full h-full object-cover" loading="lazy" />
+          <img src={livingWideImg} alt="Open living and dining area" className="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
     </div>
