@@ -5,6 +5,21 @@ const stats = [
   { label: "Min Stay", value: "2 nights" },
 ];
 
+const amenities = [
+  "Private dock on Big Long Lake",
+  "Lakefront yard with firepit",
+  "Spacious deck with lake views",
+  "Full kitchen with dishwasher",
+  "Large dining table (seats 12)",
+  "Cozy living room with board games",
+  "Bunk rooms with nautical decor",
+  "Kids room with twin beds",
+  "Central air conditioning",
+  "Washer and dryer",
+  "Free parking for multiple cars",
+  "Charcoal grill",
+];
+
 const DetailsSection = () => (
   <section id="details" className="py-24 sm:py-32 px-6 border-t border-border/50">
     <div className="max-w-3xl mx-auto">
@@ -24,6 +39,21 @@ const DetailsSection = () => (
         ))}
       </div>
 
+      {/* Amenities grid */}
+      <div className="max-w-2xl mx-auto mb-20">
+        <h3 className="font-display text-xl font-semibold text-foreground text-center mb-8">
+          What's Included
+        </h3>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 font-body text-foreground/60 text-base">
+          {amenities.map((a) => (
+            <li key={a} className="flex items-start gap-2">
+              <span className="text-secondary mt-1.5 text-xs">&#9679;</span>
+              {a}
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* House rules — simple list */}
       <div className="max-w-md mx-auto text-center">
         <h3 className="font-display text-xl font-semibold text-foreground mb-6">
@@ -31,6 +61,7 @@ const DetailsSection = () => (
         </h3>
         <ul className="font-body text-foreground/50 text-base space-y-3">
           <li>Family-friendly. Always.</li>
+          <li>No pets, please.</li>
           <li>No large party groups.</li>
           <li>Treat it like your grandparents' place.</li>
           <li>Leave it better than you found it.</li>

@@ -3,7 +3,7 @@ import heroImg from "@/assets/deck-view.webp";
 const HeroSection = () => (
   <section id="hero" className="relative h-screen flex items-center justify-center">
     <div className="absolute inset-4 sm:inset-6 rounded-3xl overflow-hidden">
-      <img src={heroImg} alt="View of Big Long Lake from the deck" className="w-full h-full object-cover" loading="eager" />
+      <img src={heroImg} alt="View of Big Long Lake from the deck" className="w-full h-full object-cover" loading="eager" width={1280} height={853} />
       <div className="absolute inset-0 bg-black/50" />
     </div>
 

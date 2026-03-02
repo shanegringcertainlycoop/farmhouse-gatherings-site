@@ -3,9 +3,15 @@ const Footer = () => (
     <p className="font-display text-lg italic text-foreground/70 mb-2">
       The Farmhouse at Big Long Lake
     </p>
-    <p className="font-body text-xs uppercase tracking-[0.2em] text-foreground/30">
+    <p className="font-body text-xs uppercase tracking-[0.2em] text-foreground/30 mb-4">
       Wolcottville, Indiana
     </p>
+    <a
+      href="/about"
+      className="font-body text-xs uppercase tracking-[0.15em] text-foreground/30 hover:text-secondary transition-colors"
+    >
+      Our Family
+    </a>
   </footer>
 );
 
