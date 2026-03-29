@@ -21,6 +21,18 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+    if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      return new Response(JSON.stringify({ error: "Valid email is required" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (email.length > 255) {
+      return new Response(JSON.stringify({ error: "Email is too long" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     if (name.length > 100) {
       return new Response(JSON.stringify({ error: "Name is too long" }), {
         status: 400,
