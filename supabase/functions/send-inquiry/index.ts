@@ -72,6 +72,7 @@ Deno.serve(async (req) => {
     const emailHtml = `
       <h2>New Farmhouse Inquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name.trim())}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email.trim())}</p>
       ${dates ? `<p><strong>Dates:</strong> ${escapeHtml(dates.trim())}</p>` : ""}
       ${group ? `<p><strong>Group Size:</strong> ${escapeHtml(group.trim())}</p>` : ""}
       ${message ? `<p><strong>Message:</strong></p><p>${escapeHtml(message.trim())}</p>` : ""}

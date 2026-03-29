@@ -85,6 +85,11 @@ const InquirySection = () => {
               {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
             </div>
             <div>
+              <Label htmlFor="email" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Email</Label>
+              <Input id="email" name="email" type="email" required placeholder="Your email address" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
+              {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
+            </div>
+            <div>
               <Label htmlFor="dates" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Dates</Label>
               <Input id="dates" name="dates" placeholder="When are you thinking?" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
               {errors.dates && <p className="text-destructive text-xs mt-1">{errors.dates}</p>}
