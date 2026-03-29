@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -99,6 +100,24 @@ Deno.serve(async (req) => {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
+    }
+
+    // Save to database
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const { error: dbError } = await supabase.from("inquiries").insert({
+      name: name.trim(),
+      email: email.trim(),
+      dates: dates?.trim() || "",
+      group_size: group?.trim() || "",
+      message: message?.trim() || "",
+    });
+
+    if (dbError) {
+      console.error("DB insert error:", dbError);
+      // Still return success since email was sent
     }
 
     return new Response(JSON.stringify({ success: true }), {
