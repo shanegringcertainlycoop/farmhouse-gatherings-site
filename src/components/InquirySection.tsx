@@ -26,6 +26,7 @@ const InquirySection = () => {
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get("name") as string || "",
+      email: formData.get("email") as string || "",
       dates: formData.get("dates") as string || "",
       group: formData.get("group") as string || "",
       message: formData.get("message") as string || "",
