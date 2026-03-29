@@ -12,11 +12,23 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { name, dates, group, message } = await req.json();
+    const { name, email, dates, group, message } = await req.json();
 
     // Validate required fields
     if (!name || typeof name !== "string" || name.trim().length === 0) {
       return new Response(JSON.stringify({ error: "Name is required" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      return new Response(JSON.stringify({ error: "Valid email is required" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (email.length > 255) {
+      return new Response(JSON.stringify({ error: "Email is too long" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -60,6 +72,7 @@ Deno.serve(async (req) => {
     const emailHtml = `
       <h2>New Farmhouse Inquiry</h2>
       <p><strong>Name:</strong> ${escapeHtml(name.trim())}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email.trim())}</p>
       ${dates ? `<p><strong>Dates:</strong> ${escapeHtml(dates.trim())}</p>` : ""}
       ${group ? `<p><strong>Group Size:</strong> ${escapeHtml(group.trim())}</p>` : ""}
       ${message ? `<p><strong>Message:</strong></p><p>${escapeHtml(message.trim())}</p>` : ""}

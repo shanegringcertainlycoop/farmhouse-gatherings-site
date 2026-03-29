@@ -8,6 +8,7 @@ import { z } from "zod";
 
 const inquirySchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
+  email: z.string().trim().min(1, "Email is required").email("Invalid email address").max(255, "Email is too long"),
   dates: z.string().max(200, "Too long").optional().default(""),
   group: z.string().max(100, "Too long").optional().default(""),
   message: z.string().max(2000, "Message is too long").optional().default(""),
@@ -25,6 +26,7 @@ const InquirySection = () => {
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get("name") as string || "",
+      email: formData.get("email") as string || "",
       dates: formData.get("dates") as string || "",
       group: formData.get("group") as string || "",
       message: formData.get("message") as string || "",
@@ -81,6 +83,11 @@ const InquirySection = () => {
               <Label htmlFor="name" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Name</Label>
               <Input id="name" name="name" required placeholder="Your name" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
               {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
+            </div>
+            <div>
+              <Label htmlFor="email" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Email</Label>
+              <Input id="email" name="email" type="email" required placeholder="Your email address" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
+              {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
             </div>
             <div>
               <Label htmlFor="dates" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Dates</Label>
