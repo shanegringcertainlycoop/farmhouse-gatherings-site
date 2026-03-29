@@ -8,6 +8,7 @@ import { z } from "zod";
 
 const inquirySchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name is too long"),
+  email: z.string().trim().min(1, "Email is required").email("Invalid email address").max(255, "Email is too long"),
   dates: z.string().max(200, "Too long").optional().default(""),
   group: z.string().max(100, "Too long").optional().default(""),
   message: z.string().max(2000, "Message is too long").optional().default(""),
