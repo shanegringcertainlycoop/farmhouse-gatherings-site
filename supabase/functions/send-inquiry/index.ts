@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { name, dates, group, message } = await req.json();
+    const { name, email, dates, group, message } = await req.json();
 
     // Validate required fields
     if (!name || typeof name !== "string" || name.trim().length === 0) {
