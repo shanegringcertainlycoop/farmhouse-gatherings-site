@@ -4,27 +4,43 @@ import {
   Trash2,
   Recycle,
   Phone,
+  MessageCircle,
   MapPin,
   Flame,
   Music,
   Thermometer,
-  Umbrella,
-  Waves,
-  Ban,
+  GlassWater,
+  CigaretteOff,
   Home,
+  Hand,
   KeyRound,
   Sailboat,
   Dog,
   Clock,
+  CalendarClock,
+  CircleParking,
   UtensilsCrossed,
   Coffee,
   Wine,
+  Beer,
+  Pizza,
   IceCreamCone,
+  Popsicle,
+  Candy,
+  Cherry,
+  Cake,
   ShoppingCart,
-  Car,
+  ShoppingBasket,
+  Truck,
+  Store,
+  PawPrint,
+  BookOpen,
   Lightbulb,
   Footprints,
   Dices,
+  Package,
+  Beef,
+  Sun,
 } from "lucide-react";
 import deckLakeImg from "@/assets/deck-lake.webp";
 import backyardImg from "@/assets/backyard.webp";
@@ -52,7 +68,7 @@ const houseTips = [
     text: "At 130 years old, the floors and stairs are a little wonky. Please take extra care on the narrow staircase.",
   },
   {
-    icon: Waves,
+    icon: GlassWater,
     title: "Drinking water",
     text: "The tap water is safe to drink but not very tasty. We recommend the water jugs provided (or bottled water) for drinking.",
   },
@@ -75,12 +91,12 @@ const houseTips = [
 
 const thingsToEnjoy = [
   {
-    icon: Umbrella,
+    icon: Package,
     title: "Deck bins",
     text: "Everything in the bins under the deck is yours to use — just tuck it all back at the end of your stay.",
   },
   {
-    icon: Flame,
+    icon: Beef,
     title: "Grills",
     text: "A Blackstone and a grill are on the deck, with all the tools kept alongside. Please clean after each use and replace the covers.",
   },
@@ -90,7 +106,7 @@ const thingsToEnjoy = [
     text: "Firewood and the firepit (under the deck) are free to use.",
   },
   {
-    icon: Waves,
+    icon: Sun,
     title: "Beach towels",
     text: "Extra towels are labeled in a lower cabinet next to the downstairs bathroom.",
   },
@@ -103,12 +119,12 @@ const thingsToEnjoy = [
 
 const eatDrink = [
   {
-    icon: UtensilsCrossed,
+    icon: Pizza,
     title: "The Shady Nook",
     text: "Great lake bar for a quick bite or a hangout. Try the crab rangoon pizza!",
   },
   {
-    icon: UtensilsCrossed,
+    icon: Beer,
     title: "Adams Lake Pub",
     text: "Casual lakeside spot nearby.",
   },
@@ -130,23 +146,26 @@ const eatDrink = [
 ];
 
 const iceCreamTrail = [
-  "Happiness Is Ice Cream — Howe",
-  "Lickety Splits — Rome City",
-  "Sundaes on Sylvan — Rome City",
-  "Rescue Scoops — Ashley",
-  "Lucy's Vedie Twist — LaGrange",
+  { icon: IceCreamCone, text: "Happiness Is Ice Cream — Howe" },
+  { icon: Popsicle, text: "Lickety Splits — Rome City" },
+  { icon: Cake, text: "Sundaes on Sylvan — Rome City" },
+  { icon: Candy, text: "Rescue Scoops — Ashley" },
+  { icon: Cherry, text: "Lucy's Vedie Twist — LaGrange" },
 ];
 
 const dayTrips = [
   {
+    icon: Store,
     title: "Shipshewana",
     text: "About 30 minutes away — Amish country shopping, flea markets, and food.",
   },
   {
+    icon: PawPrint,
     title: "Fort Wayne",
     text: "About 45 minutes south — expansive zoo and a great kids' museum.",
   },
   {
+    icon: BookOpen,
     title: "Kendallville Library",
     text: "Nice library with a playground out back.",
   },
@@ -323,7 +342,7 @@ const Welcome = () => {
                 </p>
               </div>
               <div className="flex gap-4">
-                <Car size={22} className="shrink-0 mt-1 text-secondary" />
+                <CircleParking size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>
                   <strong className="text-[#2b2520]">Parking.</strong> The
                   parking area comfortably fits up to 5 cars.
@@ -383,7 +402,7 @@ const Welcome = () => {
 
             <div className="space-y-6 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               <div className="flex gap-4">
-                <Clock size={22} className="shrink-0 mt-1 text-secondary" />
+                <CalendarClock size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>
                   <strong className="text-[#2b2520]">Check-in.</strong> 3:00 PM
                   &middot;{" "}
@@ -400,7 +419,7 @@ const Welcome = () => {
             </h2>
             <div className="space-y-6 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               <div className="flex gap-4">
-                <Ban size={22} className="shrink-0 mt-1 text-secondary" />
+                <CigaretteOff size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>
                   <strong className="text-[#2b2520]">No smoking</strong> anywhere
                   on the property.
@@ -499,10 +518,10 @@ const Welcome = () => {
                 </p>
               </div>
               <div className="flex gap-4">
-                <Home size={22} className="shrink-0 mt-1 text-secondary" />
+                <Hand size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>
                   <strong className="text-[#2b2520]">To the left</strong> are
-                  David and Rachael Michael and their kids — super fun and
+                  David and Rachel Michael and their kids — super fun and
                   friendly, and they'll be sure to say hello.
                 </p>
               </div>
@@ -544,8 +563,8 @@ const Welcome = () => {
             <ul className="space-y-3 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               {iceCreamTrail.map((stop, i) => (
                 <li key={i} className="flex gap-4">
-                  <IceCreamCone size={22} className="shrink-0 mt-1 text-secondary" />
-                  <p>{stop}</p>
+                  <stop.icon size={22} className="shrink-0 mt-1 text-secondary" />
+                  <p>{stop.text}</p>
                 </li>
               ))}
             </ul>
@@ -553,7 +572,7 @@ const Welcome = () => {
             {subheading("Groceries & quick stops")}
             <ul className="space-y-3 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               <li className="flex gap-4">
-                <ShoppingCart size={22} className="shrink-0 mt-1 text-secondary" />
+                <Truck size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>Walmart and Kroger both deliver groceries right to the house.</p>
               </li>
               <li className="flex gap-4">
@@ -561,7 +580,7 @@ const Welcome = () => {
                 <p>Kendallville is about 15 minutes away for in-person shopping.</p>
               </li>
               <li className="flex gap-4">
-                <ShoppingCart size={22} className="shrink-0 mt-1 text-secondary" />
+                <ShoppingBasket size={22} className="shrink-0 mt-1 text-secondary" />
                 <p>Dollar General is about 8 minutes away for ice and quick grabs.</p>
               </li>
             </ul>
@@ -570,7 +589,7 @@ const Welcome = () => {
             <ul className="space-y-6 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               {dayTrips.map((trip, i) => (
                 <li key={i} className="flex gap-4">
-                  <Car size={22} className="shrink-0 mt-1 text-secondary" />
+                  <trip.icon size={22} className="shrink-0 mt-1 text-secondary" />
                   <p>
                     <strong className="text-[#2b2520]">{trip.title}.</strong>{" "}
                     {trip.text}
@@ -668,7 +687,7 @@ const Welcome = () => {
                 className="rounded-2xl border border-[#2b2520]/15 p-6 hover:border-secondary transition-colors"
               >
                 <div className="flex items-center gap-2 mb-2 text-secondary">
-                  <Phone size={16} />
+                  <MessageCircle size={16} />
                   <span className="font-body text-xs uppercase tracking-[0.15em]">
                     Text / Call
                   </span>
