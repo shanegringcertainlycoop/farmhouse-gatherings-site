@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://thefarmhouseatbiglonglake.com/sitemap.xml
+Sitemap: https://biglongfarmhouse.com/sitemap.xml
