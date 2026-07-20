@@ -8,6 +8,7 @@ const links = [
   { label: "The Area", href: "#area" },
   { label: "Details", href: "#details" },
   { label: "FAQ", href: "#faq" },
+  { label: "Lake Guide", href: "/big-long-lake" },
   { label: "Our Family", href: "/about" },
   { label: "Inquire", href: "#inquire" },
 ];
@@ -39,7 +40,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map((l) => (
             <a
               key={l.href}
