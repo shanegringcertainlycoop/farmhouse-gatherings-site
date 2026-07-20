@@ -47,6 +47,8 @@ import backyardImg from "@/assets/backyard.webp";
 import livingRoomImg from "@/assets/living-room-wide.webp";
 import lakeYardImg from "@/assets/lake-yard.webp";
 import housesFromLakeImg from "@/assets/houses-from-lake.webp";
+import arrivalLaneImg from "@/assets/arrival-lane.webp";
+import parkingAreaImg from "@/assets/parking-area.webp";
 import wifiQr from "@/assets/wifi-qr.svg";
 
 const sections = [
@@ -319,20 +321,40 @@ const Welcome = () => {
             </h2>
             <p className="font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed mb-6">
               You'll find us at 5688 S. 980 E., Wolcottville — down Lane 2L.
-              Keep an eye out for the sign, and follow the lane to the house.
+              Follow the gravel lane toward the lake, and park in the gravel
+              area just before the house.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {/* TODO: replace with real photos of the sign and the road in */}
-              <div className="aspect-[4/3] rounded-2xl bg-[#2b2520]/10 flex items-center justify-center">
-                <p className="font-body text-[#2b2520]/30 text-sm uppercase tracking-[0.2em]">
-                  Photo: the sign
-                </p>
-              </div>
-              <div className="aspect-[4/3] rounded-2xl bg-[#2b2520]/10 flex items-center justify-center">
-                <p className="font-body text-[#2b2520]/30 text-sm uppercase tracking-[0.2em]">
-                  Photo: the road in
-                </p>
-              </div>
+              <figure>
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                  <img
+                    src={arrivalLaneImg}
+                    alt="The gravel lane down to the house, marked with a red arrow"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    width={1000}
+                    height={1334}
+                  />
+                </div>
+                <figcaption className="mt-2 font-body text-sm text-[#2b2520]/50 text-center">
+                  Follow the lane down toward the lake
+                </figcaption>
+              </figure>
+              <figure>
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+                  <img
+                    src={parkingAreaImg}
+                    alt="The gravel parking area with a red arrow pointing to the house"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    width={1000}
+                    height={1334}
+                  />
+                </div>
+                <figcaption className="mt-2 font-body text-sm text-[#2b2520]/50 text-center">
+                  Park here — the house is just beyond
+                </figcaption>
+              </figure>
             </div>
             <div className="space-y-6 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed">
               <div className="flex gap-4">
