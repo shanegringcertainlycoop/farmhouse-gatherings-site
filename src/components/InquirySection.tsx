@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -14,10 +14,35 @@ const inquirySchema = z.object({
   message: z.string().max(2000, "Message is too long").optional().default(""),
 });
 
+// Push a GA4 event through Google Tag Manager's dataLayer. Configure
+// form_submit and generate_lead as Key Events in GA4 to track booking enquiries.
+type DataLayerWindow = Window & { dataLayer?: Record<string, unknown>[] };
+
+const pushEvent = (event: string, params: Record<string, unknown> = {}) => {
+  if (typeof window === "undefined") return;
+  const w = window as DataLayerWindow;
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event, ...params });
+};
+
+const FORM_CONTEXT = {
+  form_id: "inquiry",
+  form_name: "Booking Inquiry",
+  form_destination: "supabase:send-inquiry",
+} as const;
+
 const InquirySection = () => {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const startedRef = useRef(false);
+
+  // Fire form_start the first time the visitor interacts with any field.
+  const handleFormStart = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    pushEvent("form_start", { ...FORM_CONTEXT });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,9 +76,14 @@ const InquirySection = () => {
 
       if (error) throw error;
 
+      // Conversion tracking: mark form_submit and generate_lead as Key Events in GA4.
+      pushEvent("form_submit", { ...FORM_CONTEXT });
+      pushEvent("generate_lead", { ...FORM_CONTEXT, currency: "USD", value: 0 });
+
       setSubmitted(true);
       toast({ title: "Inquiry sent!", description: "We'll be in touch soon." });
     } catch {
+      pushEvent("form_error", { ...FORM_CONTEXT });
       toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
     } finally {
       setSending(false);
@@ -78,7 +108,7 @@ const InquirySection = () => {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} onFocus={handleFormStart} onChange={handleFormStart} className="space-y-6">
             <div>
               <Label htmlFor="name" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Name</Label>
               <Input id="name" name="name" required placeholder="Your name" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
