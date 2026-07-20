@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 
 const inquirySchema = z.object({
@@ -25,11 +24,18 @@ const pushEvent = (event: string, params: Record<string, unknown> = {}) => {
   w.dataLayer.push({ event, ...params });
 };
 
+const FORM_NAME = "inquiry";
+
 const FORM_CONTEXT = {
   form_id: "inquiry",
   form_name: "Booking Inquiry",
-  form_destination: "supabase:send-inquiry",
+  form_destination: "netlify-forms",
 } as const;
+
+const encode = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join("&");
 
 const InquirySection = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -50,11 +56,11 @@ const InquirySection = () => {
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get("name") as string || "",
-      email: formData.get("email") as string || "",
-      dates: formData.get("dates") as string || "",
-      group: formData.get("group") as string || "",
-      message: formData.get("message") as string || "",
+      name: (formData.get("name") as string) || "",
+      email: (formData.get("email") as string) || "",
+      dates: (formData.get("dates") as string) || "",
+      group: (formData.get("group") as string) || "",
+      message: (formData.get("message") as string) || "",
     };
 
     const result = inquirySchema.safeParse(data);
@@ -70,11 +76,15 @@ const InquirySection = () => {
 
     setSending(true);
     try {
-      const { error } = await supabase.functions.invoke("send-inquiry", {
-        body: result.data,
+      // Netlify Forms: POST the encoded fields back to the site. Netlify
+      // captures the submission (visible in the dashboard + email notifications).
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": FORM_NAME, ...result.data }),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error(`Form submission failed: ${response.status}`);
 
       // Conversion tracking: mark form_submit and generate_lead as Key Events in GA4.
       pushEvent("form_submit", { ...FORM_CONTEXT });
@@ -108,7 +118,23 @@ const InquirySection = () => {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} onFocus={handleFormStart} onChange={handleFormStart} className="space-y-6">
+          <form
+            name={FORM_NAME}
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            onFocus={handleFormStart}
+            onChange={handleFormStart}
+            className="space-y-6"
+          >
+            {/* Netlify Forms plumbing — required for detection + submission */}
+            <input type="hidden" name="form-name" value={FORM_NAME} />
+            <p className="hidden">
+              <label>
+                Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field" />
+              </label>
+            </p>
             <div>
               <Label htmlFor="name" className="font-body text-xs uppercase tracking-[0.15em] text-foreground/40">Name</Label>
               <Input id="name" name="name" required placeholder="Your name" className="mt-2 bg-transparent border-border/50 text-foreground placeholder:text-foreground/30" />
