@@ -2,7 +2,14 @@
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback so /about and /welcome resolve to the app
+[build.environment]
+  # Pin the build image to a stable LTS so the SSR build + prerender run
+  # the same way CI does locally.
+  NODE_VERSION = "22"
+
+# SPA fallback. Prerendered routes (/, /about, /big-long-lake) exist as static
+# files and are served directly; /welcome and any unknown path fall through to
+# the client-rendered app (this is what keeps /welcome noindexed + private).
 [[redirects]]
   from = "/*"
   to = "/index.html"
