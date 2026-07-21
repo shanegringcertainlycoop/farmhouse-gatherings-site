@@ -178,6 +178,7 @@ const checkoutList = [
   "Take trash to the bin and start the dishwasher.",
   "Bring outdoor furniture cushions inside so they stay dry.",
   "Remove all umbrellas from their stands — we've lost many to storms!",
+  "Make sure all doors are locked — especially the back door and the basement door.",
 ];
 
 const Welcome = () => {
