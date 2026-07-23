@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import houseImg from "@/assets/house-exterior.webp";
+import familyImg from "@/assets/family.webp";
 
 const About = () => {
   return (
@@ -34,11 +35,15 @@ const About = () => {
               The Gring Family
             </h2>
 
-            {/* Placeholder for family photo */}
-            <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-[#2b2520]/10 flex items-center justify-center mb-12 max-w-md mx-auto">
-              <p className="font-body text-[#2b2520]/30 text-sm uppercase tracking-[0.2em]">
-                Family photo
-              </p>
+            <div className="aspect-[3/2] overflow-hidden rounded-2xl mb-12 mx-auto">
+              <img
+                src={familyImg}
+                alt="Laura, Shane, Kyle, and Scott Gring"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={1280}
+                height={853}
+              />
             </div>
 
             <div className="space-y-5 font-body text-[#2b2520]/70 text-base sm:text-lg leading-relaxed text-center">
