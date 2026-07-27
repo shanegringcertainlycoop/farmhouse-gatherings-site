@@ -2,27 +2,21 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-// The nav had grown to ten flat items because it was doing two different jobs
-// at once: scrolling the homepage AND navigating the site. At 820px the logo
-// and half the labels wrapped onto second lines.
+// Deliberately three links and one button — the nav had grown to ten flat items
+// and was wrapping onto two lines by 820px.
 //
-// Split by job. Section links only make sense on the homepage — everywhere else
-// they just throw you back to it — so off the homepage they drop away and the
-// bar reduces to real pages. Inquire is a button, not a seventh grey label.
-
-// In-page anchors. Homepage only.
-const sectionLinks = [
-  { label: "Experience", href: "#experience" },
+// This is a single-property rental: the homepage is a scroller, so the nav's
+// real job is "what's the lake like", "what does the house have", and "let me
+// book". Everything else — both guides, Our Family, the contact address — lives
+// in the footer, which keeps it reachable and crawlable without competing with
+// the one action that matters.
+//
+// The same set renders on every page, so there is no context switching. Hash
+// links resolve to /#section off the homepage; see hrefFor below.
+const links = [
   { label: "The Lake", href: "#lake" },
   { label: "Details", href: "#details" },
-  { label: "FAQ", href: "#faq" },
-];
-
-// Real pages. Shown everywhere.
-const pageLinks = [
-  { label: "Big Long Lake", href: "/big-long-lake" },
-  { label: "Indiana Lakes", href: "/northern-indiana-lakes" },
-  { label: "Our Family", href: "/about" },
+  { label: "Guides", href: "/big-long-lake" },
 ];
 
 const Navbar = () => {
@@ -33,8 +27,6 @@ const Navbar = () => {
   // dead. Off the homepage we emit "/#inquire" instead and let the browser
   // navigate. useLocation (not window) so this is correct during prerender too.
   const isHome = useLocation().pathname === "/";
-
-  const links = isHome ? [...sectionLinks, ...pageLinks] : pageLinks;
 
   const hrefFor = (href: string) =>
     href.startsWith("#") && !isHome ? `/${href}` : href;
@@ -62,9 +54,9 @@ const Navbar = () => {
           The Farmhouse
         </a>
 
-        {/* Desktop — lg, not md: at 768–1023px seven labels plus a button
-            wrapped, so the hamburger covers that range instead. */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+        {/* Three links and a button fit comfortably from ~700px, so md is safe
+            again — the earlier lg breakpoint existed only to hide seven. */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map((l) => (
             <a
               key={l.href}
@@ -86,7 +78,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-3 min-w-[48px] min-h-[48px] flex items-center justify-center text-foreground shrink-0"
+          className="md:hidden p-3 min-w-[48px] min-h-[48px] flex items-center justify-center text-foreground shrink-0"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -97,7 +89,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden bg-background/95 backdrop-blur-md border-b border-border/50 px-4 pb-5">
+        <div className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/50 px-4 pb-5">
           {links.map((l) => (
             <a
               key={l.href}

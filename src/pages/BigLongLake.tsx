@@ -104,6 +104,17 @@ const BigLongLake = () => {
                 or a long weekend, this guide covers what there is to do on the water
                 and around town.
               </p>
+              <p>
+                Looking further afield? Big Long is one of 239 public lakes across
+                LaGrange, Steuben, Noble and Kosciusko counties &mdash; see the{" "}
+                <a
+                  href="/northern-indiana-lakes"
+                  className="underline decoration-secondary/40 underline-offset-4 hover:decoration-secondary transition-colors"
+                >
+                  guide to northern Indiana lakes
+                </a>{" "}
+                for the whole region.
+              </p>
             </div>
             <a
               href="/#inquire"
