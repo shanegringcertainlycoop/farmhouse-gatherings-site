@@ -10,6 +10,7 @@ const links = [
   { label: "Details", href: "#details" },
   { label: "FAQ", href: "#faq" },
   { label: "Lake Guide", href: "/big-long-lake" },
+  { label: "Indiana Lakes", href: "/northern-indiana-lakes" },
   { label: "Our Family", href: "/about" },
   { label: "Inquire", href: "#inquire" },
 ];
