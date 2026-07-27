@@ -103,8 +103,12 @@ const routes = [
     home: true,
   },
   {
+    // Flat `about.html`, not `about/index.html`. With Netlify's pretty_urls a
+    // directory index makes /about 301 to /about/, so every internal link, the
+    // sitemap entry and the canonical (all slash-less) cost a redirect hop.
+    // A flat file is served at /about directly, 200.
     path: "/about",
-    out: "about/index.html",
+    out: "about.html",
     title: "Our Family | The Farmhouse at Big Long Lake",
     description:
       "Meet the Gring family, owners of The Farmhouse at Big Long Lake in Wolcottville, Indiana — one of the oldest homes on the lake, kept in the family since 2018.",
@@ -112,7 +116,7 @@ const routes = [
   },
   {
     path: "/big-long-lake",
-    out: "big-long-lake/index.html",
+    out: "big-long-lake.html",
     title: "Big Long Lake Guide | Things to Do, Fishing & Events, Wolcottville IN",
     description:
       "A guide to Big Long Lake in Wolcottville, Indiana — swimming, boating, fishing, kayaking, seasonal events, and staying lakefront at The Farmhouse.",

@@ -18,8 +18,9 @@
   status = 301
   force = true
 
-# SPA fallback. Prerendered routes (/, /about, /big-long-lake) exist as static
-# files and are served directly; /welcome and any unknown path fall through to
+# SPA fallback. Prerendered routes (/, /about, /big-long-lake) exist as flat
+# static files (about.html, big-long-lake.html) and are served directly at their
+# slash-less paths by pretty_urls; /welcome and any unknown path fall through to
 # the client-rendered app (this is what keeps /welcome noindexed + private).
 [[redirects]]
   from = "/*"
