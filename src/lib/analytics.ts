@@ -14,7 +14,11 @@ export const pushEvent = (event: string, params: Record<string, unknown> = {}) =
 
 // The public enquiry address. A rental enquiry often arrives by email rather
 // than through the form, so this is tracked as its own `contact` event.
-export const CONTACT_EMAIL = "shane.gring@gmail.com";
+//
+// This is a Cloudflare Email Routing alias that forwards to Shane's inbox —
+// it keeps a personal address off the public site and can be repointed or
+// switched off in Cloudflare without a code change.
+export const CONTACT_EMAIL = "hello@biglongfarmhouse.com";
 
 export const trackContactClick = (method: "email" | "phone", location: string) =>
   pushEvent("contact", { contact_method: method, contact_location: location });
