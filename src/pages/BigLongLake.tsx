@@ -96,7 +96,11 @@ const BigLongLake = () => {
               <p>
                 Our home, The Farmhouse, sits right on the shoreline with a private
                 dock, a lakefront yard, and a deck overlooking the water. If you're
-                looking for a Big Long Lake rental for a family reunion, a summer week,
+                looking for a{" "}
+                <a href="/" className="underline decoration-secondary/40 underline-offset-4 hover:decoration-secondary transition-colors">
+                  Big Long Lake rental
+                </a>{" "}
+                for a family reunion, a summer week,
                 or a long weekend, this guide covers what there is to do on the water
                 and around town.
               </p>
@@ -216,7 +220,7 @@ const BigLongLake = () => {
               href="/#inquire"
               className="inline-block bg-secondary text-secondary-foreground font-body font-semibold text-sm tracking-wide uppercase px-8 py-3 rounded-sm hover:bg-secondary/90 transition-colors"
             >
-              Send an Inquiry
+              Check the Big Long Lake Rental
             </a>
           </div>
         </section>

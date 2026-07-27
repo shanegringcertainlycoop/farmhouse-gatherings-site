@@ -7,8 +7,31 @@ turns them into tracked conversions in GA4. You only need to do this once.
 **Events the site now sends:** `form_start`, `form_submit`, `generate_lead`, `form_error`
 
 Each event also carries these parameters: `form_id` (`inquiry`), `form_name`
-(`Booking Inquiry`), `form_destination` (`supabase:send-inquiry`), and — on
+(`Booking Inquiry`), `form_destination` (`netlify-forms`), and — on
 `generate_lead` — `currency` (`USD`) and `value` (`0`).
+
+---
+
+## Part 0 — Turn Netlify form detection back on (do this FIRST)
+
+**This is the actual reason the enquiry count is zero.** The site's Netlify
+project has `ignore_html_forms: true`, so Netlify never registered the `inquiry`
+form. A `POST /` from the form returns **404**, the `fetch` in
+`InquirySection.tsx` throws, the visitor sees "Something went wrong", and
+`form_submit` never fires. Enquiries are not merely uncounted — they are lost.
+
+1. **app.netlify.com → project `biglongfarmhouse` → Project configuration →
+   Forms → Form detection → Enable.**
+2. **Trigger a fresh deploy.** Detection is a build-time HTML scan, so the
+   setting alone changes nothing until the site rebuilds.
+3. Confirm the form registered: `netlify api listSiteForms --data
+   '{"site_id":"b5e74645-9f14-42f1-bbef-418720c713f2"}'` should no longer
+   return `[]`.
+4. Submit a real test enquiry on biglongfarmhouse.com and confirm it appears
+   under **Forms → inquiry**, and that the success state ("Thanks!") renders.
+
+Only once a submission succeeds will `form_submit` / `generate_lead` reach the
+dataLayer — Parts A and B below cannot work before this is fixed.
 
 ---
 
@@ -81,5 +104,14 @@ next traffic spike won't "pass by uncounted."
 - `value: 0` is a placeholder. If you ever want to weight a lead (e.g. estimate an
   average booking value), change it in `src/components/InquirySection.tsx` where
   `generate_lead` is pushed, and set the same value in the GTM tag.
-- No code changes are needed for any of the steps above — the events are already
-  live in the site. This is pure GTM + GA4 configuration.
+- Beyond Part 0, no code changes are needed — the events are already live in the
+  site. Parts A and B are pure GTM + GA4 configuration.
+- GTM now loads **only on `biglongfarmhouse.com`** (guard in `index.html`), so
+  preview hosts no longer pollute GA4. Testing on a `*.netlify.app` or localhost
+  URL will therefore show no tags firing — that is intended. Use GTM Preview
+  against the live domain instead.
+- The report's other half of this fix — "track the phone and email links as
+  events" — has nothing to attach to yet: the marketing pages carry **no public
+  phone number or email address**. The only `tel:` links are on the private
+  `/welcome` guest page, which serves booked guests, not prospects. If a public
+  contact number is ever added, track its clicks as `contact`.
