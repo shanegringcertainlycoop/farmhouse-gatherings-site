@@ -18,11 +18,21 @@
   status = 301
   force = true
 
-# SPA fallback. Prerendered routes (/, /about, /big-long-lake) exist as flat
-# static files (about.html, big-long-lake.html) and are served directly at their
-# slash-less paths by pretty_urls; /welcome and any unknown path fall through to
-# the client-rendered app (this is what keeps /welcome noindexed + private).
+# /welcome is a real client-rendered route, so it must serve the SPA shell with a
+# genuine 200. It stays out of the prerender list (and out of sitemap.xml) on
+# purpose — that is what keeps it noindexed and private.
+[[redirects]]
+  from = "/welcome"
+  to = "/index.html"
+  status = 200
+
+# Everything else that isn't a real file is a genuine 404. Serving the SPA shell
+# with status = 404 lets React render the NotFound page while Google receives a
+# real 404 instead of a soft 404 (previously every unknown path returned 200 with
+# a full copy of the homepage, including the homepage's canonical tag).
+# Prerendered routes (/, /about, /big-long-lake) and static assets are matched as
+# files before redirects are applied, so they are unaffected.
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
