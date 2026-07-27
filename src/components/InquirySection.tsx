@@ -13,16 +13,9 @@ const inquirySchema = z.object({
   message: z.string().max(2000, "Message is too long").optional().default(""),
 });
 
-// Push a GA4 event through Google Tag Manager's dataLayer. Configure
-// form_submit and generate_lead as Key Events in GA4 to track booking enquiries.
-type DataLayerWindow = Window & { dataLayer?: Record<string, unknown>[] };
-
-const pushEvent = (event: string, params: Record<string, unknown> = {}) => {
-  if (typeof window === "undefined") return;
-  const w = window as DataLayerWindow;
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ event, ...params });
-};
+// form_submit and generate_lead are Key Events in GA4 — they count booking
+// enquiries. See docs/ga4-key-events.md.
+import { pushEvent, CONTACT_EMAIL, trackContactClick } from "@/lib/analytics";
 
 const FORM_NAME = "inquiry";
 
@@ -116,6 +109,17 @@ const InquirySection = () => {
             <p className="font-body text-foreground/50">
               We got your note. We'll be in touch soon.
             </p>
+            <p className="font-body text-sm text-foreground/40 mt-6">
+              Need us sooner? Email{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                onClick={() => trackContactClick("email", "inquiry-confirmation")}
+                className="text-secondary underline underline-offset-4"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
           </div>
         ) : (
           <form
@@ -167,6 +171,20 @@ const InquirySection = () => {
             >
               {sending ? "Sending..." : "Send Inquiry"}
             </button>
+
+            {/* The form was the only way to reach us, and nobody who started it
+                ever finished. Give people a plain email address as an out. */}
+            <p className="font-body text-sm text-foreground/40 text-center pt-2">
+              Or just email us at{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Big Long Lake farmhouse — availability")}`}
+                onClick={() => trackContactClick("email", "inquiry-form")}
+                className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
           </form>
         )}
       </div>

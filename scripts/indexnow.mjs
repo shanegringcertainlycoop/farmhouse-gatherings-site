@@ -10,11 +10,18 @@
  */
 
 const KEY = "23d2babfa9405fc1c81bfe3df9c0081e";
-const HOST = "thefarmhouseatbiglonglake.com";
+// Was thefarmhouseatbiglonglake.com, which no longer resolves — every
+// submission from this script was being sent for a dead host.
+const HOST = "biglongfarmhouse.com";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
-// All public URLs on the site
-const ALL_URLS = [`https://${HOST}/`];
+// All public URLs on the site. /welcome is deliberately excluded: it is the
+// private guest guide, kept out of the sitemap and out of the index.
+const ALL_URLS = [
+  `https://${HOST}/`,
+  `https://${HOST}/about`,
+  `https://${HOST}/big-long-lake`,
+];
 
 const urls = process.argv[2] ? [process.argv[2]] : ALL_URLS;
 

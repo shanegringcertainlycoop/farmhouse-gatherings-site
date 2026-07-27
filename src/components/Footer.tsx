@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL, trackContactClick } from "@/lib/analytics";
+
 const Footer = () => (
   <footer className="py-16 px-6 border-t border-border/30 text-center">
     <p className="font-display text-lg italic text-foreground/70 mb-2">
@@ -6,6 +8,14 @@ const Footer = () => (
     <p className="font-body text-xs uppercase tracking-[0.2em] text-foreground/30 mb-4">
       Wolcottville, Indiana
     </p>
+    {/* Sitewide contact path — the enquiry form only exists on the homepage. */}
+    <a
+      href={`mailto:${CONTACT_EMAIL}`}
+      onClick={() => trackContactClick("email", "footer")}
+      className="block font-body text-sm text-foreground/50 hover:text-secondary transition-colors mb-4"
+    >
+      {CONTACT_EMAIL}
+    </a>
     <a
       href="/about"
       className="font-body text-xs uppercase tracking-[0.15em] text-foreground/30 hover:text-secondary transition-colors"
