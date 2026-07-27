@@ -37,17 +37,30 @@ dataLayer — Parts A and B below cannot work before this is fixed.
 
 ## Part A — Google Tag Manager (forward the events to GA4)
 
-**Status: NOT done — this is the current blocker.** An end-to-end browser test on
-2026-07-27 confirmed the site pushes `form_start`, `form_submit` and
-`generate_lead` into the dataLayer on a real submission, and that Netlify
-captured the enquiry — but only `form_start` appeared in GA4, and that one comes
-from GA4 **Enhanced Measurement** (`formInteractionsEnabled` is on for stream
-`G-TCVX2100Q0`), not from the dataLayer. So `form_start` showing up in GA4 is
-*not* evidence that GTM is forwarding anything. Until the steps below are done,
-`form_submit` and `generate_lead` will keep reaching the dataLayer and going
-nowhere, and the Key Events created in Part B will stay at zero.
+**Status: DONE (2026-07-27), container version 3 "Forward form events to GA4".**
+Verified end to end: a real browser submission produced `form_submit` and
+`generate_lead` in GA4 Realtime. What is live:
 
-GTM has to pass the `dataLayer` events through to GA4.
+- Trigger `CE - Form Events` — Custom Event, regex
+  `^(form_start|form_submit|generate_lead|form_error)$`
+- Tag `GA4 Event - Form Events` — GA4 Event, `eventName = {{Event}}`,
+  `measurementIdOverride = G-TCVX2100Q0`, params from the five `DLV - *` variables
+- Variables `DLV - form_id`, `DLV - form_name`, `DLV - form_destination`,
+  `DLV - value`, `DLV - currency`
+
+Two things worth knowing before you touch this again:
+
+1. **`form_start` in GA4 was never proof that GTM was wired.** It was arriving
+   from GA4 Enhanced Measurement all along, while the dataLayer pushes went
+   nowhere. Check for `generate_lead` instead — Enhanced Measurement cannot
+   produce that one, so it only appears if GTM is forwarding.
+2. **Enhanced Measurement "Form interactions" is now switched off** on stream
+   `G-TCVX2100Q0`. It was double-firing `form_submit` alongside the GTM tag,
+   which would have inflated the primary conversion. Leave it off: the site's own
+   `form_submit` fires only on an actual HTTP 200, whereas Enhanced Measurement
+   fires on any submit attempt, including ones that fail.
+
+The steps below are the original build instructions, kept for reference.
 
 1. Open **tagmanager.google.com** → container `GTM-P4S84NGV`.
 2. Confirm there's a **GA4 Configuration tag** firing on **All Pages**. If GA4 is
@@ -87,8 +100,11 @@ least once before it appears in the list — submit a test inquiry first).
    **Reports → Realtime** to confirm they're arriving live).
 3. **Admin → Data display → Key events → Mark as key event** (or toggle the
    **Mark as key event** switch next to the event in the Events list):
-   - [ ] `generate_lead`  ← primary booking-enquiry conversion
-   - [ ] `form_submit`    ← secondary / backup conversion
+   - [x] `generate_lead`  ← primary booking-enquiry conversion (done 2026-07-27)
+   - [x] `form_submit`    ← secondary / backup conversion (done 2026-07-27)
+   Both are set to **once per session**, so a visitor who double-submits counts
+   once. Note the GA4 UI has no "create key event by name" control — it only lets
+   you star events it has already seen — so these were created via the Admin API.
    - (leave `form_start` and `form_error` as standard events — useful for a
      funnel and error rate, but not conversions)
 4. (Optional) **Admin → Product links → Google Ads** — if you ever run Ads, import
