@@ -37,7 +37,17 @@ dataLayer — Parts A and B below cannot work before this is fixed.
 
 ## Part A — Google Tag Manager (forward the events to GA4)
 
-Do this first. GTM has to pass the `dataLayer` events through to GA4.
+**Status: NOT done — this is the current blocker.** An end-to-end browser test on
+2026-07-27 confirmed the site pushes `form_start`, `form_submit` and
+`generate_lead` into the dataLayer on a real submission, and that Netlify
+captured the enquiry — but only `form_start` appeared in GA4, and that one comes
+from GA4 **Enhanced Measurement** (`formInteractionsEnabled` is on for stream
+`G-TCVX2100Q0`), not from the dataLayer. So `form_start` showing up in GA4 is
+*not* evidence that GTM is forwarding anything. Until the steps below are done,
+`form_submit` and `generate_lead` will keep reaching the dataLayer and going
+nowhere, and the Key Events created in Part B will stay at zero.
+
+GTM has to pass the `dataLayer` events through to GA4.
 
 1. Open **tagmanager.google.com** → container `GTM-P4S84NGV`.
 2. Confirm there's a **GA4 Configuration tag** firing on **All Pages**. If GA4 is
