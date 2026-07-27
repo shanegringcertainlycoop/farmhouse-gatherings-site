@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route } from "react-router-dom";
+import { useHashScroll } from "@/hooks/use-hash-scroll";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import BigLongLake from "./pages/BigLongLake";
@@ -10,17 +11,23 @@ import NotFound from "./pages/NotFound";
 // Router-agnostic app tree. The router itself is supplied by the caller:
 // - BrowserRouter on the client (App.tsx)
 // - StaticRouter during static prerendering (entry-server.tsx)
-const AppRoutes = () => (
-  <TooltipProvider>
-    <Toaster />
-    <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/big-long-lake" element={<BigLongLake />} />
-      <Route path="/welcome" element={<Welcome />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </TooltipProvider>
-);
+const AppRoutes = () => {
+  // Restores the anchor jump that hydration would otherwise discard, so
+  // /#inquire from another page actually lands on the enquiry form.
+  useHashScroll();
+
+  return (
+    <TooltipProvider>
+      <Toaster />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/big-long-lake" element={<BigLongLake />} />
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </TooltipProvider>
+  );
+};
 
 export default AppRoutes;

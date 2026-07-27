@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -15,9 +16,19 @@ const links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  // The #section targets all live on the homepage. On /about and
+  // /big-long-lake they don't exist, so a bare "#inquire" href pointed at
+  // nothing and the click handler swallowed the event — the link was simply
+  // dead. Off the homepage we emit "/#inquire" instead and let the browser
+  // navigate. useLocation (not window) so this is correct during prerender too.
+  const isHome = useLocation().pathname === "/";
+
+  const hrefFor = (href: string) =>
+    href.startsWith("#") && !isHome ? `/${href}` : href;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith("#")) return; // let normal links navigate
+    // Only intercept for smooth scrolling when the target is on this page.
+    if (!href.startsWith("#") || !isHome) return; // let normal links navigate
     e.preventDefault();
     setOpen(false);
     const el = document.querySelector(href);
@@ -29,11 +40,7 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         <a
           href="/"
-          onClick={(e) => {
-            if (window.location.pathname === "/") {
-              handleClick(e, "#hero");
-            }
-          }}
+          onClick={(e) => handleClick(e, "#hero")}
           className="font-display text-lg sm:text-xl italic text-foreground tracking-tight"
         >
           The Farmhouse
@@ -44,7 +51,7 @@ const Navbar = () => {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={hrefFor(l.href)}
               onClick={(e) => handleClick(e, l.href)}
               className="text-xs font-body font-medium uppercase tracking-[0.15em] text-foreground/60 hover:text-secondary transition-colors"
             >
@@ -70,7 +77,7 @@ const Navbar = () => {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={hrefFor(l.href)}
               onClick={(e) => handleClick(e, l.href)}
               className="block w-full text-left py-3 text-sm font-body uppercase tracking-[0.15em] text-foreground/60 hover:text-secondary border-b border-border/30 last:border-0"
             >
