@@ -403,7 +403,16 @@ const NorthernIndianaLakes = () => (
                 market on Tuesdays and Wednesdays through the summer. Pokagon State
                 Park has a toboggan run that draws people from three states in winter.
                 Fort Wayne, with an airport and a well-regarded zoo, is the nearest
-                city.
+                city. And there is a great deal of ice cream &mdash; enough that we
+                mapped it in a{" "}
+                <a
+                  href="/northern-indiana-ice-cream"
+                  className="text-secondary underline decoration-secondary/40 underline-offset-4 hover:decoration-secondary transition-colors"
+                >
+                  separate guide to the region&rsquo;s scoop shops
+                </a>
+                , including Steuben County&rsquo;s official eight-stop ice cream
+                trail.
               </p>
             </div>
             <div>

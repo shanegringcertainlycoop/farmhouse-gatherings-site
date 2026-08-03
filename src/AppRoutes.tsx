@@ -6,6 +6,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import BigLongLake from "./pages/BigLongLake";
 import NorthernIndianaLakes from "./pages/NorthernIndianaLakes";
+import NorthernIndianaIceCream from "./pages/NorthernIndianaIceCream";
 import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
 
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/big-long-lake" element={<BigLongLake />} />
         <Route path="/northern-indiana-lakes" element={<NorthernIndianaLakes />} />
+        <Route path="/northern-indiana-ice-cream" element={<NorthernIndianaIceCream />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

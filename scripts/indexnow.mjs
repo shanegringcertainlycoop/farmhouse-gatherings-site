@@ -22,6 +22,7 @@ const ALL_URLS = [
   `https://${HOST}/about`,
   `https://${HOST}/big-long-lake`,
   `https://${HOST}/northern-indiana-lakes`,
+  `https://${HOST}/northern-indiana-ice-cream`,
 ];
 
 const urls = process.argv[2] ? [process.argv[2]] : ALL_URLS;

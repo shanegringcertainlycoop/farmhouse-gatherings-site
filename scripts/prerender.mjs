@@ -158,6 +158,109 @@ const lakesGuideJsonLd = [
   },
 ];
 
+// The regional ice cream guide. As with the lakes guide, FAQPage mirrors the
+// questions rendered on the page — keep the two in sync.
+const iceCreamGuideFaqs = [
+  [
+    "Where is the closest ice cream to Big Long Lake?",
+    "Cowlick's Ice Cream Shoppe on W 700 S in Wolcottville is the nearest, a few minutes from the lake, with more than 30 hand-dipped flavours plus soft serve, shakes and sundaes. Lickity Splitz in Rome City, near Sylvan Lake, is the other close one.",
+  ],
+  [
+    "Is there an ice cream trail in northern Indiana?",
+    "Yes. The Steuben County Tourism Bureau runs an official Ice Cream Trail of eight stops around Angola, Fremont, Orland, Hamilton and Pokagon State Park. It is the only formal trail in the region.",
+  ],
+  [
+    "What is the best ice cream in Shipshewana?",
+    "Vanilla Bean Creamery, beside the Blue Gate, makes around 30 flavours in small batches from scratch. Shipshewana also has Mom's Ice Cream, the Wana Cup, the Blue Gate Garden Inn soda fountain and Shawna Rae's.",
+  ],
+  [
+    "Are the ice cream shops open year-round?",
+    "Most are not. The majority are seasonal, running spring through early autumn, and several are walk-up windows. Between roughly Memorial Day and Labor Day you can turn up; outside it, ring ahead or check the shop's Facebook page.",
+  ],
+  [
+    "Where can I find dairy-free or gluten-free ice cream in the area?",
+    "Scoops in Angola carries non-dairy and gluten-free options, Skoops in North Webster has dairy-free and sugar-free, and Cowabunga Creamery in Albion offers both gluten-free and dairy-free.",
+  ],
+  [
+    "Is the ice cream in Amish country actually Amish-made?",
+    "Some of it. Several LaGrange County shops are Amish- or Mennonite-owned family businesses, and the frozen custard and root beer around Shipshewana are genuinely local. Many shops scoop excellent ice cream made elsewhere — Hudsonville, Ashby's, Velvet, Chocolate Shoppe, Glacier.",
+  ],
+];
+
+const iceCreamGuideJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Northern Indiana Ice Cream",
+        item: `${SITE}/northern-indiana-ice-cream`,
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${SITE}/northern-indiana-ice-cream#article`,
+    headline:
+      "Northern Indiana Ice Cream: A Guide to the Lake Country Scoop Shops",
+    description:
+      "A guide to 25 ice cream shops across LaGrange, Steuben, Noble and Kosciusko counties, including the Steuben County Ice Cream Trail's eight official stops.",
+    about: { "@id": `${SITE}/northern-indiana-lakes#region` },
+    isPartOf: { "@id": `${SITE}/#website` },
+    author: { "@type": "Organization", name: "The Farmhouse at Big Long Lake" },
+    publisher: { "@id": `${SITE}/#vacation-rental` },
+    image: `${SITE}/images/houses-from-lake.webp`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE}/northern-indiana-ice-cream#shops`,
+    name: "Ice cream shops in northern Indiana's lake country",
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    // A representative set, not the full listing — each is a business we have
+    // verified to a town. Keep in sync with src/data/ice-cream.ts.
+    itemListElement: [
+      ["Cowlick's Ice Cream Shoppe", "Wolcottville"],
+      ["Vanilla Bean Creamery", "Shipshewana"],
+      ["Lickity Splitz Ice Cream & Coffee", "Rome City"],
+      ["Cowabunga Creamery", "Albion"],
+      ["Scoops Ice Cream", "Angola"],
+      ["Zesto", "Angola"],
+      ["The Social Ice Cream Co.", "Angola"],
+      ["Capt'n Pete's Dairy Dock", "Hamilton"],
+      ["Skoops", "North Webster"],
+      ["Social Ice Cream & Sandwich Shop", "Winona Lake"],
+    ].map(([name, town], i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "IceCreamShop",
+        name,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: town,
+          addressRegion: "IN",
+          addressCountry: "US",
+        },
+      },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${SITE}/northern-indiana-ice-cream#faq`,
+    mainEntity: iceCreamGuideFaqs.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  },
+];
+
 const aboutJsonLd = [
   {
     "@context": "https://schema.org",
@@ -220,6 +323,14 @@ const routes = [
     description:
       "A complete guide to the lakes of northern Indiana — 239 public lakes across LaGrange, Steuben, Noble and Kosciusko counties, which hold nearly 70% of the state's natural lake acreage. Acreage, depth and fishing detail from the Indiana DNR.",
     jsonLd: lakesGuideJsonLd,
+  },
+  {
+    path: "/northern-indiana-ice-cream",
+    out: "northern-indiana-ice-cream.html",
+    title: "Northern Indiana Ice Cream: 25 Shops Across Indiana's Lake Country",
+    description:
+      "A guide to ice cream in northern Indiana — 25 shops across LaGrange, Steuben, Noble and Kosciusko counties, including the eight stops on the Steuben County Ice Cream Trail, sorted by distance from the lakes.",
+    jsonLd: iceCreamGuideJsonLd,
   },
 ];
 

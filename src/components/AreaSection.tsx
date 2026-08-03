@@ -37,7 +37,14 @@ const AreaSection = () => (
         >
           northern Indiana lakes
         </a>{" "}
-        worth a day trip from here.
+        worth a day trip from here, and another to the{" "}
+        <a
+          href="/northern-indiana-ice-cream"
+          className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors"
+        >
+          best ice cream in the area
+        </a>
+        , which turns out to be the question guests ask most.
       </p>
 
       <div className="space-y-12">
