@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import IceCreamMap from "@/components/IceCreamMap";
 import {
   SHOPS,
   SHOP_COUNTS,
   TOTAL_SHOPS,
   TRAIL_STOPS,
   DISTANCE_LABELS,
+  mapsUrl,
 } from "@/data/ice-cream";
 // The whole photo set was shot in autumn, so nothing here claims summer.
 import heroImg from "@/assets/deck-lake.webp";
@@ -271,7 +273,23 @@ const NorthernIndianaIceCream = () => (
         </div>
       </section>
 
-      {/* The shops */}
+      {/* Map */}
+      <section className="py-20 sm:py-28 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Where they all are
+          </h2>
+          <p className="font-body text-foreground/50 mb-10 max-w-2xl">
+            Every town in the guide, with the number of shops in each. The dark
+            pin is The Farmhouse &mdash; everything else is measured from there.
+          </p>
+          <IceCreamMap />
+        </div>
+      </section>
+
+      {/* The shops. Stays on the default dark surface — the text colours here
+          are all `text-foreground`, which is light and disappears entirely on
+          bg-surface-warm. Warm sections need the explicit dark #2b2520 set. */}
       <section className="py-20 sm:py-28 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
@@ -309,23 +327,51 @@ const NorthernIndianaIceCream = () => (
                       <h4 className="font-display text-xl font-semibold text-foreground">
                         {s.name}
                       </h4>
-                      <span className="font-body text-sm text-foreground/40">
-                        {s.town}
-                      </span>
-                      {s.address && (
-                        <span className="font-body text-sm text-foreground/40">
-                          · {s.address}
-                        </span>
-                      )}
                       {s.trail && (
                         <span className="font-body text-[10px] uppercase tracking-[0.15em] text-secondary border border-secondary/40 rounded-sm px-2 py-0.5">
                           Ice Cream Trail
                         </span>
                       )}
                     </div>
-                    <p className="font-body text-[11px] uppercase tracking-[0.15em] text-foreground/35 mb-2">
+                    <p className="font-body text-[11px] uppercase tracking-[0.15em] text-foreground/35 mb-3">
                       {DISTANCE_LABELS[s.distance]}
                     </p>
+
+                    {/* Address links to a Google Maps search on the address
+                        string, so it resolves even where our own map only
+                        pins the town. */}
+                    <p className="font-body text-sm text-foreground/45 mb-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+                      {s.address ? (
+                        <a
+                          href={mapsUrl(`${s.name}, ${s.address}`)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-foreground/20 underline-offset-4 hover:text-secondary hover:decoration-secondary transition-colors"
+                        >
+                          {s.address}
+                        </a>
+                      ) : (
+                        <span>
+                          {s.town}, Indiana &mdash; no street address published
+                        </span>
+                      )}
+                      {s.url && (
+                        <>
+                          <span aria-hidden="true" className="text-foreground/20">
+                            ·
+                          </span>
+                          <a
+                            href={s.url.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-foreground/20 underline-offset-4 hover:text-secondary hover:decoration-secondary transition-colors"
+                          >
+                            {s.url.label}
+                          </a>
+                        </>
+                      )}
+                    </p>
+
                     <p className="font-body text-foreground/65 leading-relaxed">
                       {s.note}
                     </p>

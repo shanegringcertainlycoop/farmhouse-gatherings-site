@@ -208,7 +208,7 @@ const iceCreamGuideJsonLd = [
     headline:
       "Northern Indiana Ice Cream: A Guide to the Lake Country Scoop Shops",
     description:
-      "A guide to 25 ice cream shops across LaGrange, Steuben, Noble and Kosciusko counties, including the Steuben County Ice Cream Trail's eight official stops.",
+      "A guide to 24 ice cream shops across LaGrange, Steuben, Noble and Kosciusko counties, including the Steuben County Ice Cream Trail's eight official stops.",
     about: { "@id": `${SITE}/northern-indiana-lakes#region` },
     isPartOf: { "@id": `${SITE}/#website` },
     author: { "@type": "Organization", name: "The Farmhouse at Big Long Lake" },
@@ -221,29 +221,35 @@ const iceCreamGuideJsonLd = [
     "@id": `${SITE}/northern-indiana-ice-cream#shops`,
     name: "Ice cream shops in northern Indiana's lake country",
     itemListOrder: "https://schema.org/ItemListUnordered",
-    // A representative set, not the full listing — each is a business we have
-    // verified to a town. Keep in sync with src/data/ice-cream.ts.
+    // A representative set, not the full listing — each is a business whose
+    // street address has been verified. Keep in sync with src/data/ice-cream.ts.
+    // [name, street, town, postcode, url]
     itemListElement: [
-      ["Cowlick's Ice Cream Shoppe", "Wolcottville"],
-      ["Vanilla Bean Creamery", "Shipshewana"],
-      ["Lickity Splitz Ice Cream & Coffee", "Rome City"],
-      ["Cowabunga Creamery", "Albion"],
-      ["Scoops Ice Cream", "Angola"],
-      ["Zesto", "Angola"],
-      ["The Social Ice Cream Co.", "Angola"],
-      ["Capt'n Pete's Dairy Dock", "Hamilton"],
-      ["Skoops", "North Webster"],
-      ["Social Ice Cream & Sandwich Shop", "Winona Lake"],
-    ].map(([name, town], i) => ({
+      ["Cowlick's Ice Cream Shoppe", "1405 W 700 S", "Wolcottville", "46795", null],
+      ["Vanilla Bean Creamery", "100 S Van Buren St", "Shipshewana", "46565", null],
+      ["Mom's Ice Cream", "655 S Van Buren St", "Shipshewana", "46565", "https://momsicecream.com/"],
+      ["Lickity Splitz Ice Cream & Coffee", "3204 E CR 900 N", "Rome City", "46784", "https://lickitysplitz.square.site/"],
+      ["Cowabunga Creamery", "118 E Main St", "Albion", "46701", "https://cowabungacreamery.square.site/"],
+      ["Scoops Ice Cream", "3331 N State Rd 127", "Angola", "46703", null],
+      ["Zesto", "2931 N State Rd 127", "Angola", "46703", null],
+      ["The Social Ice Cream Co.", "2405 N 200 W", "Angola", "46703", null],
+      ["Capt'n Pete's Dairy Dock", "7425 S Wayne St", "Hamilton", "46742", null],
+      ["Skoops", "114 N Main St", "North Webster", "46555", "https://skoopsnw.com/"],
+      ["Social Ice Cream & Sandwich Shop", "904 Park Ave", "Winona Lake", "46590", "https://villageatwinona.com/eat/social/"],
+      ["Ritter's Frozen Custard", "3845 Lake City Hwy", "Warsaw", "46580", null],
+    ].map(([name, street, town, postcode, url], i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
         "@type": "IceCreamShop",
         name,
+        ...(url ? { url } : {}),
         address: {
           "@type": "PostalAddress",
+          streetAddress: street,
           addressLocality: town,
           addressRegion: "IN",
+          postalCode: postcode,
           addressCountry: "US",
         },
       },
@@ -327,9 +333,9 @@ const routes = [
   {
     path: "/northern-indiana-ice-cream",
     out: "northern-indiana-ice-cream.html",
-    title: "Northern Indiana Ice Cream: 25 Shops Across Indiana's Lake Country",
+    title: "Northern Indiana Ice Cream: 24 Shops Across Indiana's Lake Country",
     description:
-      "A guide to ice cream in northern Indiana — 25 shops across LaGrange, Steuben, Noble and Kosciusko counties, including the eight stops on the Steuben County Ice Cream Trail, sorted by distance from the lakes.",
+      "A guide to ice cream in northern Indiana — 24 shops across LaGrange, Steuben, Noble and Kosciusko counties, including the eight stops on the Steuben County Ice Cream Trail, sorted by distance from the lakes.",
     jsonLd: iceCreamGuideJsonLd,
   },
 ];
