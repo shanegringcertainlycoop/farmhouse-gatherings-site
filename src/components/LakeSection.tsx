@@ -38,6 +38,20 @@ const LakeSection = () => (
           turns gold, and everyone ends up sitting at the end of the dock
           doing nothing in particular.
         </p>
+        {/* Body-copy link to the guide page. The nav and footer already point at
+            it, but a link inside the prose is what passes topical relevance —
+            and the anchor text is the term we want the guide to rank for. */}
+        <p>
+          If you're still deciding where to stay, our guide to{" "}
+          <a
+            href="/big-long-lake"
+            className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors"
+          >
+            Big Long Lake
+          </a>{" "}
+          covers the depth, the fishing, the public boat launch, and what the
+          shoreline is actually like.
+        </p>
       </div>
     </div>
   </section>

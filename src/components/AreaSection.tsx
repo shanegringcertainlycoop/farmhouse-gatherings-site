@@ -27,6 +27,19 @@ const AreaSection = () => (
         Wolcottville sits in the heart of LaGrange County, Indiana — Amish country, lake country, and about as far from a highway as you can get.
       </p>
 
+      {/* Body-copy link to the regional hub, with the anchor text it targets.
+          Same reasoning as the Big Long Lake link in LakeSection. */}
+      <p className="font-body text-[#2b2520]/50 text-base sm:text-lg text-center mb-16 -mt-10">
+        It's also a good base for the rest of the region — we wrote a guide to the{" "}
+        <a
+          href="/northern-indiana-lakes"
+          className="text-secondary underline underline-offset-4 hover:text-secondary/80 transition-colors"
+        >
+          northern Indiana lakes
+        </a>{" "}
+        worth a day trip from here.
+      </p>
+
       <div className="space-y-12">
         {highlights.map((h) => (
           <div key={h.title} className="text-center">

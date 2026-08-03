@@ -186,9 +186,11 @@ const routes = [
   {
     path: "/",
     out: "index.html",
-    title: "Big Long Lake Vacation Rental | The Farmhouse, Wolcottville IN",
+    // Keep in sync with index.html — these values overwrite the ones in the
+    // shell for the built homepage.
+    title: "Big Long Lake Vacation Rental, Indiana | Sleeps 12, Private Dock",
     description:
-      "Big Long Lake vacation rental in Wolcottville, Indiana. This lakefront farmhouse sleeps 12 with 4 bedrooms, 2 baths, a full kitchen, and a private dock on Big Long Lake.",
+      "Lakefront vacation rental on Big Long Lake in Wolcottville, Indiana. Sleeps 12 in 4 bedrooms and 2 baths, with a full kitchen and a private dock.",
     home: true,
   },
   {
